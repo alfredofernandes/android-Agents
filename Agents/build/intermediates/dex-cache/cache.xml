@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/alfredorfernandes/Documents/Projects/Lambton/android-Agents/Agents/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/alfredorfernandes/Documents/Projects/Lambton/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_336d488a9c75b8bf34d121a4742c19de0a09b681/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/alfredorfernandes/Documents/Projects/Lambton/android-Agents/Agents/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0524f88af13abe34d7fb37c6c57aac5de23910fe">
+        <dex dex="/Users/alfredorfernandes/Documents/Projects/Lambton/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_308f26aa08d9662fbb2c7901bd6bb92821e4aa28/classes.dex" />
+    </item>
+
+</items>
