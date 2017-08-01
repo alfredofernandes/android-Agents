@@ -6,4 +6,10 @@
     <string name="password_field">Password</string>
     <string name="login_button">Log In</string>
 
+    <!--MenuActivity-->
+    <string name="agent_list_button">List of Agents</string>
+    <string name="search_agents_button">Search Agents</string>
+    <string name="add_agent_button">Add Agent</string>
+    <string name="logout_button">Log Out</string>
+
 </resources>

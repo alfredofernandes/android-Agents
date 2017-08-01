@@ -2,6 +2,9 @@ package com.example.alfredorfernandes.agents.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.alfredorfernandes.agents.R;
 
@@ -11,5 +14,38 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        Button agentList = (Button) findViewById(R.id.agent_list_button);
+        Button searchAgent = (Button) findViewById(R.id.search_agent_button);
+        Button addAgent = (Button) findViewById(R.id.add_agent_button);
+        Button logout = (Button) findViewById(R.id.logout_button);
+
+        agentList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this, "Button Agent List clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        searchAgent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this, "Button Add Agent Clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addAgent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this, "Button Add Agent Clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MenuActivity.this, "Button Logout Clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
