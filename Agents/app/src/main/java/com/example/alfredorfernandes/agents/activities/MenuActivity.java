@@ -23,28 +23,28 @@ public class MenuActivity extends AppCompatActivity {
         agentList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MenuActivity.this, "Button Agent List clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, "Button 'List of Agents' clicked!", Toast.LENGTH_SHORT).show();
             }
         });
 
         searchAgent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MenuActivity.this, "Button Add Agent Clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, "Button 'Search Agents' Clicked!", Toast.LENGTH_SHORT).show();
             }
         });
 
         addAgent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MenuActivity.this, "Button Add Agent Clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, "Button 'Add Agent' Clicked!", Toast.LENGTH_SHORT).show();
             }
         });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MenuActivity.this, "Button Logout Clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuActivity.this, "Button 'Logout' Clicked!", Toast.LENGTH_SHORT).show();
             }
         });
     }
