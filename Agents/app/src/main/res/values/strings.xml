@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Agents</string>
+
+    <!--LoginActivity-->
+    <string name="login_field">Login</string>
+    <string name="password_field">Password</string>
+    <string name="login_button">Log In</string>
+
 </resources>
