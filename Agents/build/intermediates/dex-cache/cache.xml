@@ -52,7 +52,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="16316b8ba576bed735b820ac3e0a41e91bca776f">
+        sha1="a861bb2b33a7ccf54be2a4dd6b4da209bf34e1f8">
         <dex dex="/Volumes/Everything Else/GitHub/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_0ae0d928260de9c832950d0cdfbda09f48f0d53e/classes.dex" />
     </item>
     <item
