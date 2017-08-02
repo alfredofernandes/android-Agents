@@ -5,7 +5,7 @@ import java.util.Date;
 public class Mission {
 
     public enum MissionStatus {
-        DONE, CANCELLED, GOING
+        DONE, CANCELLED, ONGOING
     }
 
     private String missionName;

@@ -1,5 +1,6 @@
 package com.example.alfredorfernandes.agents.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +24,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "Button clicked!", Toast.LENGTH_SHORT).show();
+                Intent goToMenuActivity = new Intent(LoginActivity.this, MenuActivity.class);
+                startActivity(goToMenuActivity);
+                finish();
             }
         });
 
