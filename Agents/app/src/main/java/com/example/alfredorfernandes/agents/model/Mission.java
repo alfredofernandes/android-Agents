@@ -2,10 +2,6 @@ package com.example.alfredorfernandes.agents.model;
 
 import java.util.Date;
 
-/**
- * Created by juliana on 2017-08-01.
- */
-
 public class Mission {
 
     public enum MissionStatus {
