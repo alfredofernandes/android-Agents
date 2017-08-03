@@ -59,10 +59,14 @@ public class AgentDAO extends SQLiteOpenHelper {
     }
 
     public List<Agent> dbListAgents() {
+        
+        String sql = "SELECT * FROM Agent;";
+        return dbSQLStatement(sql);
+    }
+
+    public List<Agent> dbSQLStatement(String sql) {
 
         SQLiteDatabase db = getReadableDatabase();
-
-        String sql = "SELECT * FROM Agent;";
         Cursor c = db.rawQuery(sql, null);
 
         List<Agent> agentsList = new ArrayList<>();
@@ -90,6 +94,7 @@ public class AgentDAO extends SQLiteOpenHelper {
         c.close();
 
         return agentsList;
+
     }
 
     public Agent checkLogin(String username, String password) {
@@ -117,7 +122,7 @@ public class AgentDAO extends SQLiteOpenHelper {
 
             Agent.LevelStatus level = Agent.LevelStatus.valueOf(c.getString(c.getColumnIndex("level")));
             agent.setLevel(level);
-            
+
         }
         c.close();
 
