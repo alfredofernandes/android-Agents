@@ -5,11 +5,6 @@ public class Agency {
     private String name;
     private String website;
 
-    public Agency(String name, String website) {
-        this.name = name;
-        this.website = website;
-    }
-
     public String getName() {
         return name;
     }

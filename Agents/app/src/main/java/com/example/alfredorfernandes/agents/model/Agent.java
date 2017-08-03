@@ -1,25 +1,49 @@
 package com.example.alfredorfernandes.agents.model;
 
+import android.graphics.Bitmap;
+
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Agent
 {
+    public enum LevelStatus {
+        L001, L002, L003, L004, L005, L006, L007
+    }
+
     private String name;
-    private int level;
     private Agency agency;
     private String country;
     private String phone;
     private String address;
+    private Bitmap photo;
     private ArrayList<Mission> missions;
+    private String username;
+    private String password;
+    private LevelStatus level;
 
-    public Agent(String name, int level, Agency agency, String country, String phone, String address, ArrayList<Mission> missions) {
-        this.name = name;
+    public LevelStatus getLevel() {
+        return level;
+    }
+
+    public void setLevel(LevelStatus level) {
         this.level = level;
-        this.agency = agency;
-        this.country = country;
-        this.phone = phone;
-        this.address = address;
-        this.missions = missions;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -28,14 +52,6 @@ public class Agent
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public Agency getAgency() {
@@ -68,6 +84,14 @@ public class Agent
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 
     public ArrayList<Mission> getMissions() {

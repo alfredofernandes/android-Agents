@@ -12,12 +12,6 @@ public class Mission {
     private Date date;
     private MissionStatus status;
 
-    public Mission(String missionName, Date date, MissionStatus status) {
-        this.missionName = missionName;
-        this.date = date;
-        this.status = status;
-    }
-
     public String getMissionName() {
         return missionName;
     }
