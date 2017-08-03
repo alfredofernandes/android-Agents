@@ -2,8 +2,17 @@ package com.example.alfredorfernandes.agents.model;
 
 public class Agency {
 
+    private Long id;
     private String name;
     private String website;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
