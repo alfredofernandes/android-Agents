@@ -59,7 +59,7 @@ public class AgentDAO extends SQLiteOpenHelper {
     }
 
     public List<Agent> dbListAgents() {
-        
+
         String sql = "SELECT * FROM Agent;";
         return dbSQLStatement(sql);
     }

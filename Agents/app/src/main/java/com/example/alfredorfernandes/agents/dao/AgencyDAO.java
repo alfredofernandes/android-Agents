@@ -38,7 +38,7 @@ public class AgencyDAO extends SQLiteOpenHelper {
         db.insert("Agency", null, agencyData);
     }
 
-    public List<Agency> dbSearch() {
+    public List<Agency> dbListAgencies() {
 
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT * FROM Agency";

@@ -26,7 +26,7 @@ public class MissionAgentDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql = "CREATE TABLE MissionsAgents (" +
+        String sql = "CREATE TABLE MissionAgent (" +
                 "id INTEGER PRIMARY KEY, " +
                 "mission_id INTEGER, " +
                 "agent_id INTEGER)";
@@ -37,7 +37,7 @@ public class MissionAgentDAO extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        String sql = "DROP TABLE IF EXISTS MissionsAgents";
+        String sql = "DROP TABLE IF EXISTS MissionAgent";
         db.execSQL(sql);
         onCreate(db);
     }
@@ -47,24 +47,24 @@ public class MissionAgentDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues missionAgentData = new ContentValues();
-        missionAgentData.put("mission_id", String.valueOf(missionAgent.getMissionId()));
-        missionAgentData.put("agent_id", String.valueOf(missionAgent.getAgentId()));
+        missionAgentData.put("mission_id", missionAgent.getMissionId());
+        missionAgentData.put("agent_id", missionAgent.getAgentId());
 
-        db.insert("MissionsAgents", null, missionAgentData);
+        db.insert("MissionAgent", null, missionAgentData);
     }
 
     public List<MissionAgent> dbListMissionsAgents() {
-        String sql = "SELECT * FROM MissionsAgents;";
+        String sql = "SELECT * FROM MissionAgent;";
         return dbSQLStatement(sql);
     }
 
     public List<MissionAgent> dbFindPerAgent(Agent agent) {
-        String sql = "SELECT * FROM MissionsAgents WHERE agent_id LIKE '%" + agent + "%'";
+        String sql = "SELECT * FROM MissionAgent WHERE agent_id = " + agent.getId();
         return dbSQLStatement(sql);
     }
 
     public List<MissionAgent> dbFindPerMission(Mission mission) {
-        String sql = "SELECT * FROM MissionsAgents WHERE mission_id LIKE '%" + mission + "%'";
+        String sql = "SELECT * FROM MissionAgent WHERE mission_id = " + mission.getId();
         return dbSQLStatement(sql);
     }
 
