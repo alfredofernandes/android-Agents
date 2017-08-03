@@ -53,6 +53,7 @@ public class AgentDAO extends SQLiteOpenHelper {
         agentData.put("photo", getBytes(agent.getPhoto()));
         agentData.put("username", agent.getUsername());
         agentData.put("password", agent.getPassword());
+        agentData.put("level", agent.getLevel().toString());
 
         db.insert("Agent", null, agentData);
     }
@@ -113,6 +114,10 @@ public class AgentDAO extends SQLiteOpenHelper {
 
             agent.setUsername(c.getString(c.getColumnIndex("username")));
             agent.setPassword(c.getString(c.getColumnIndex("password")));
+
+            Agent.LevelStatus level = Agent.LevelStatus.valueOf(c.getString(c.getColumnIndex("level")));
+            agent.setLevel(level);
+            
         }
         c.close();
 
