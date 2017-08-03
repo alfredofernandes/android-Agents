@@ -11,16 +11,32 @@ public class Agent
         L001, L002, L003, L004, L005, L006, L007
     }
 
+    private Long id;
     private String name;
-    private Agency agency;
+    private Long agencyId;
     private String country;
     private String phone;
     private String address;
     private Bitmap photo;
-    private ArrayList<Mission> missions;
     private String username;
     private String password;
     private LevelStatus level;
+
+    public Long getAgencyId() {
+        return agencyId;
+    }
+
+    public void setAgencyId(Long agencyId) {
+        this.agencyId = agencyId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LevelStatus getLevel() {
         return level;
@@ -52,14 +68,6 @@ public class Agent
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Agency getAgency() {
-        return agency;
-    }
-
-    public void setAgency(Agency agency) {
-        this.agency = agency;
     }
 
     public String getCountry() {
@@ -94,11 +102,4 @@ public class Agent
         this.photo = photo;
     }
 
-    public ArrayList<Mission> getMissions() {
-        return missions;
-    }
-
-    public void setMissions(ArrayList<Mission> missions) {
-        this.missions = missions;
-    }
 }
