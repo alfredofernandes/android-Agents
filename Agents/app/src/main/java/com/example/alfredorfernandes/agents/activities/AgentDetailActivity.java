@@ -29,7 +29,7 @@ public class AgentDetailActivity extends AppCompatActivity {
         profileCountry = (TextView) findViewById(R.id.profile_country);
         profilePhone = (TextView) findViewById(R.id.profile_phone);
         profileAddress = (TextView) findViewById(R.id.profile_address);
-        
+
         buttonInfo = (Button) findViewById(R.id.profile_btn_info);
         buttonCall = (Button) findViewById(R.id.profile_btn_call);
         buttonMap = (Button) findViewById(R.id.profile_btn_map);

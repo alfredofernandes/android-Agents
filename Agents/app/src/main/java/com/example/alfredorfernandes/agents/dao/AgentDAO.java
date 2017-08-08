@@ -30,7 +30,11 @@ public class AgentDAO {
         agentData.put("country", agent.getCountry());
         agentData.put("phone", agent.getPhone());
         agentData.put("address", agent.getAddress());
-        agentData.put("photo", getBytes(agent.getPhoto()));
+
+        if (agent.getPhoto() != null) {
+            agentData.put("photo", getBytes(agent.getPhoto()));
+        }
+
         agentData.put("username", agent.getUsername());
         agentData.put("password", agent.getPassword());
         agentData.put("level", agent.getLevel());
@@ -50,7 +54,7 @@ public class AgentDAO {
 
         List<Agent> agentsList = new ArrayList<>();
 
-        while (c.moveToNext()) {
+        while (c.moveToFirst() || c.getCount() > 0) {
 
             Agent agent = new Agent();
 
@@ -63,7 +67,9 @@ public class AgentDAO {
             agent.setLevel(c.getString(c.getColumnIndex("level")));
 
             byte[] image = c.getBlob(c.getColumnIndex("photo"));
-            agent.setPhoto(getImage(image));
+            if (image != null) {
+                agent.setPhoto(getImage(image));
+            }
 
             agent.setUsername(c.getString(c.getColumnIndex("username")));
             agent.setPassword(c.getString(c.getColumnIndex("password")));
@@ -93,7 +99,9 @@ public class AgentDAO {
             agent.setAddress(c.getString(c.getColumnIndex("address")));
 
             byte[] image = c.getBlob(c.getColumnIndex("photo"));
-            agent.setPhoto(getImage(image));
+            if (image != null) {
+                agent.setPhoto(getImage(image));
+            }
 
             agent.setUsername(c.getString(c.getColumnIndex("username")));
             agent.setPassword(c.getString(c.getColumnIndex("password")));

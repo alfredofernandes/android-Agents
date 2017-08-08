@@ -1,14 +1,21 @@
 package com.example.alfredorfernandes.agents.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.example.alfredorfernandes.agents.model.Agency;
 import com.example.alfredorfernandes.agents.model.Agent;
 import com.example.alfredorfernandes.agents.model.Mission;
 import com.example.alfredorfernandes.agents.model.MissionAgent;
 
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -32,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Agent table create statement
     private static final String CREATE_TABLE_AGENT = "CREATE TABLE "
-            + TABLE_AGENT+ "(id INTEGER PRIMARY KEY, agency_id INTEGER, name TEXT,"
+            + TABLE_AGENT + "(id INTEGER PRIMARY KEY, agency_id INTEGER, name TEXT,"
             +" country TEXT, phone TEXT, address TEXT, photo BLOB,"
             +" username TEXT, password TEXT, level TEXT)";
 
@@ -50,12 +57,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Classes tables
-    private AgencyDAO agencyDAO;
-    private AgentDAO agentDAO;
-    private MissionDAO missionDAO;
-    private MissionAgentDAO missionAgentDAO;
-
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -64,87 +65,140 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_MISSION);
         db.execSQL(CREATE_TABLE_MISSION_AGENT);
 
-        agencyDAO = new AgencyDAO(db, TABLE_AGENCY);
-        agentDAO = new AgentDAO(db, TABLE_AGENT);
-        missionDAO = new MissionDAO(db, TABLE_MISSION);
-        missionAgentDAO = new MissionAgentDAO(db, TABLE_MISSION_AGENT);
-
-        createAgencies();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         // on upgrade drop older tables
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TABLE_AGENCY);
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TABLE_AGENT);
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TABLE_MISSION);
-        db.execSQL("DROP TABLE IF EXISTS " + CREATE_TABLE_MISSION_AGENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_AGENCY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_AGENT);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MISSION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MISSION_AGENT);
 
         // create new tables
         onCreate(db);
     }
 
-    private void createAgencies() {
-
-        Agency agency1 = new Agency();
-        agency1.setName("BAGG");
-        agency1.setWebsite("http://www.bagg.com/");
-
-        Agency agency2 = new Agency();
-        agency2.setName("ADECCO");
-        agency2.setWebsite("http://www.adecco.ca/en");
-
-        Agency agency3 = new Agency();
-        agency3.setName("RANDSTAD");
-        agency3.setWebsite("https://www.randstad.ca/");
-
-        agencyDAO.dbInsert(agency1);
-        agencyDAO.dbInsert(agency2);
-        agencyDAO.dbInsert(agency3);
-    }
-
     // TABLE AGENCY
-    public List<Agency> dbListAgencies() {
-        return agencyDAO.dbListAgencies();
+    public void dbInsertAgency(Agency agency) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        ContentValues agencyData = new ContentValues();
+
+        agencyData.put("name", agency.getName());
+        agencyData.put("website", agency.getWebsite());
+
+        db.insert(TABLE_AGENCY, null, agencyData);
     }
 
     // TABLE AGENT
-    public void dbInsert(Agent agent) {
-        agentDAO.dbInsert(agent);
+    public void dbInsertAgent(Agent agent) {
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        ContentValues agentData = new ContentValues();
+        agentData.put("name", agent.getName());
+        agentData.put("agency_id", agent.getAgencyId());
+        agentData.put("country", agent.getCountry());
+        agentData.put("phone", agent.getPhone());
+        agentData.put("address", agent.getAddress());
+
+        if (agent.getPhoto() != null) {
+            agentData.put("photo", getBytes(agent.getPhoto()));
+        }
+
+        agentData.put("username", agent.getUsername());
+        agentData.put("password", agent.getPassword());
+        agentData.put("level", agent.getLevel());
+
+        db.insert(TABLE_AGENT, null, agentData);
     }
 
     public List<Agent> dbListAgents() {
-        return agentDAO.dbListAgents();
+
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT * FROM "+ TABLE_AGENT;
+
+        Cursor c = db.rawQuery(sql, null);
+
+        List<Agent> agentsList = new ArrayList<>();
+
+        Log.i("LIST AGENTS", "" +c.getCount());
+
+        while (c.moveToNext()) {
+
+            Agent agent = new Agent();
+
+            agent.setId(c.getLong(c.getColumnIndex("id")));
+            agent.setName(c.getString(c.getColumnIndex("name")));
+            agent.setAgencyId(c.getLong(c.getColumnIndex("agency_id")));
+            agent.setCountry(c.getString(c.getColumnIndex("country")));
+            agent.setPhone(c.getString(c.getColumnIndex("phone")));
+            agent.setAddress(c.getString(c.getColumnIndex("address")));
+            agent.setLevel(c.getString(c.getColumnIndex("level")));
+
+            byte[] image = c.getBlob(c.getColumnIndex("photo"));
+            if (image != null) {
+                agent.setPhoto(getImage(image));
+            }
+
+            agent.setUsername(c.getString(c.getColumnIndex("username")));
+            agent.setPassword(c.getString(c.getColumnIndex("password")));
+
+            agentsList.add(agent);
+        }
+
+        c.close();
+
+        return agentsList;
+
     }
 
     public Agent checkLogin(String username, String password) {
-        return agentDAO.checkLogin(username, password);
+
+        SQLiteDatabase db = getReadableDatabase();
+        String sql = "SELECT * FROM "+ TABLE_AGENT +" WHERE username=? AND password=?";
+        Cursor c = db.rawQuery(sql, new String[]{username, password});
+
+        Agent agent = new Agent();
+
+        if (c.moveToFirst()) {
+            agent.setId(c.getLong(c.getColumnIndex("id")));
+            agent.setName(c.getString(c.getColumnIndex("name")));
+            agent.setAgencyId(c.getLong(c.getColumnIndex("agency_id")));
+            agent.setCountry(c.getString(c.getColumnIndex("country")));
+            agent.setPhone(c.getString(c.getColumnIndex("phone")));
+            agent.setAddress(c.getString(c.getColumnIndex("address")));
+
+            byte[] image = c.getBlob(c.getColumnIndex("photo"));
+            if (image != null) {
+                agent.setPhoto(getImage(image));
+            }
+
+            agent.setUsername(c.getString(c.getColumnIndex("username")));
+            agent.setPassword(c.getString(c.getColumnIndex("password")));
+
+            agent.setLevel(c.getString(c.getColumnIndex("level")));
+
+        }
+        c.close();
+
+        return agent;
+
     }
 
-    // TABLE MISSION
-    public void dbInsert(Mission mission) {
-        missionDAO.dbInsert(mission);
+    // convert from bitmap to byte array
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
     }
 
-    public List<Mission> dbListMissions() {
-        return missionDAO.dbListMissions();
+    // convert from byte array to bitmap
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
-    // TABLE MISSION AGENT
-    public void dbInsert(MissionAgent missionAgent) {
-        missionAgentDAO.dbInsert(missionAgent);
-    }
-
-    public List<MissionAgent> dbListMissionsAgents() {
-        return missionAgentDAO.dbListMissionsAgents();
-    }
-
-    public List<MissionAgent> dbFindPerAgent(Agent agent) {
-        return missionAgentDAO.dbFindPerAgent(agent);
-    }
-
-    public List<MissionAgent> dbFindPerMission(Mission mission) {
-        return missionAgentDAO.dbFindPerMission(mission);
-    }
 }

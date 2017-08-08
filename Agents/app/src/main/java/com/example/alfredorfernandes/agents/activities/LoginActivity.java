@@ -9,8 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alfredorfernandes.agents.R;
+import com.example.alfredorfernandes.agents.dao.DatabaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText loginField = (EditText) findViewById(R.id.login_field);
         EditText passwordField = (EditText) findViewById(R.id.password_field);
         Button loginButton = (Button) findViewById(R.id.login_button);
+
+        databaseHelper = new DatabaseHelper(this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
