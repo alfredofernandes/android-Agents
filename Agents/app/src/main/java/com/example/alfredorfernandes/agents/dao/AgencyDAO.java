@@ -11,10 +11,6 @@ import java.util.List;
 
 public class AgencyDAO extends SQLiteOpenHelper {
 
-    public AgencyDAO(Context context) {
-        super(context, "AgentsDB", null, 1);
-    }
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String sql = "CREATE TABLE Agency (id INTEGER PRIMARY KEY, name TEXT, website TEXT)";
