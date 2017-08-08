@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by juliana on 2017-08-03.
- */
-
 public class MissionDAO extends SQLiteOpenHelper {
 
     public MissionDAO(Context context) {

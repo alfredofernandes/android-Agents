@@ -14,10 +14,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by juliana on 2017-08-03.
- */
-
 public class AgentDAO extends SQLiteOpenHelper {
 
     public AgentDAO(Context context) {
@@ -102,7 +98,7 @@ public class AgentDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         String sql = "SELECT * FROM Agent WHERE username=? AND password=?";
-        Cursor c = db.rawQuery(sql, new String[] { username, password });
+        Cursor c = db.rawQuery(sql, new String[]{username, password});
 
         Agent agent = new Agent();
 
