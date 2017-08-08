@@ -4,43 +4,35 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.alfredorfernandes.agents.model.Agency;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgencyDAO extends SQLiteOpenHelper {
+public class AgencyDAO {
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE Agency (id INTEGER PRIMARY KEY, name TEXT, website TEXT)";
-        sqLiteDatabase.execSQL(sql);
-    }
+    private SQLiteDatabase dataBase;
+    private String tableName;
 
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        String sql = "DROP TABLE IF EXISTS Agency";
-        sqLiteDatabase.execSQL(sql);
-        onCreate(sqLiteDatabase);
+    public AgencyDAO(SQLiteDatabase db, String table) {
+        this.dataBase = db;
+        this.tableName = table;
     }
 
     public void dbInsert(Agency agency) {
-        SQLiteDatabase db = getWritableDatabase();
         ContentValues agencyData = new ContentValues();
 
         agencyData.put("name", agency.getName());
         agencyData.put("website", agency.getWebsite());
 
-        db.insert("Agency", null, agencyData);
+        dataBase.insert(tableName, null, agencyData);
     }
 
     public List<Agency> dbListAgencies() {
 
-        SQLiteDatabase db = getReadableDatabase();
-        String sql = "SELECT * FROM Agency";
-        Cursor c = db.rawQuery(sql, null);
+        String sql = "SELECT * FROM "+ tableName;
+        Cursor c = dataBase.rawQuery(sql, null);
 
         List<Agency> agencyList = new ArrayList<>();
 
