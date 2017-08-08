@@ -7,10 +7,6 @@ import java.util.ArrayList;
 
 public class Agent
 {
-    public enum LevelStatus {
-        L001, L002, L003, L004, L005, L006, L007
-    }
-
     private Long id;
     private String name;
     private Long agencyId;
@@ -20,7 +16,7 @@ public class Agent
     private Bitmap photo;
     private String username;
     private String password;
-    private LevelStatus level;
+    private String level;
 
     public Long getAgencyId() {
         return agencyId;
@@ -38,11 +34,11 @@ public class Agent
         this.id = id;
     }
 
-    public LevelStatus getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(LevelStatus level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 

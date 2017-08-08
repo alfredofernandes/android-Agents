@@ -1,63 +1,43 @@
 package com.example.alfredorfernandes.agents.dao;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.alfredorfernandes.agents.model.Mission;
-import com.example.alfredorfernandes.agents.model.MissionAgent;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MissionDAO extends SQLiteOpenHelper {
+public class MissionDAO {
 
-    public MissionDAO(Context context) {
-        super(context, "AgentsDB", null, 1);
-    }
+    private SQLiteDatabase dataBase;
+    private String tableName;
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        String sql = "CREATE TABLE Mission (" +
-                "id INTEGER PRIMARY KEY, " +
-                "name TEXT NOT NULL, " +
-                "date LONG, " +
-                "status TEXT)";
-
-        db.execSQL(sql);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Mission";
-        db.execSQL(sql);
-        onCreate(db);
+    public MissionDAO(SQLiteDatabase db, String table) {
+        this.dataBase = db;
+        this.tableName = table;
     }
 
     public void dbInsert(Mission mission) {
-
-        SQLiteDatabase db = getWritableDatabase();
 
         ContentValues missionData = new ContentValues();
         missionData.put("name", mission.getName());
         missionData.put("date", persistDate(mission.getDate()));
         missionData.put("status", mission.getStatus().toString());
 
-        db.insert("Mission", null, missionData);
+        dataBase.insert(tableName, null, missionData);
     }
 
-    public List<Mission> dbListMissionsAgents() {
-        String sql = "SELECT * FROM Mission;";
+    public List<Mission> dbListMissions() {
+        String sql = "SELECT * FROM "+ tableName;
         return dbSQLStatement(sql);
     }
 
     public List<Mission> dbSQLStatement(String sql) {
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery(sql, null);
+
+        Cursor c = dataBase.rawQuery(sql, null);
 
         List<Mission> missionList = new ArrayList<Mission>();
 
