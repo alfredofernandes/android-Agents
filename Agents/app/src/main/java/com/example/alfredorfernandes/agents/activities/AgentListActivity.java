@@ -33,7 +33,7 @@ public class AgentListActivity extends AppCompatActivity {
 
     private void loadDataList() {
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        /*DatabaseHelper databaseHelper = new DatabaseHelper(this);
         final List<Agent> agents = databaseHelper.dbListAgents();
 
         if (agents.size() > 0) {
@@ -56,6 +56,6 @@ public class AgentListActivity extends AppCompatActivity {
                 }
             };
             agentList.setAdapter(adapter);
-        }
+        }*/
     }
 }
