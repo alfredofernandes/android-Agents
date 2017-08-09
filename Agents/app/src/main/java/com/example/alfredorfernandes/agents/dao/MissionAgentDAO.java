@@ -14,32 +14,67 @@ import java.util.List;
 
 public class MissionAgentDAO {
 
+    public static final String TABLE = "MissionAgent";
 
-    public ContentValues dbInsert(MissionAgent missionAgent) {
+    // Labels Table Columns names
+    public static final String KEY_Id = "id";
+    public static final String KEY_MissionId = "missionId";
+    public static final String KEY_AgentId = "agentId";
 
-        ContentValues missionAgentData = new ContentValues();
-        missionAgentData.put("mission_id", missionAgent.getMissionId());
-        missionAgentData.put("agent_id", missionAgent.getAgentId());
+    private MissionAgentDAO missionAgentDAO;
 
-        return missionAgentData;
+    public MissionAgentDAO(){
+        missionAgentDAO = new MissionAgentDAO();
     }
 
-    /*public List<MissionAgent> dbListMissionsAgents(Cursor c) {
-        String sql = "SELECT * FROM "+ tableName;
-        return dbSQLStatement(Cursor c);
+    public static String createTable(){
+        return "CREATE TABLE " + TABLE  + "("
+                + KEY_Id  + " INTEGER PRIMARY KEY,"
+                + KEY_MissionId + " INTEGER, "
+                + KEY_AgentId + " INTEGER)";
+    }
+
+    public void dbInsert(MissionAgent missionAgent) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_MissionId, missionAgent.getMissionId());
+        values.put(KEY_AgentId, missionAgent.getAgentId());
+
+        // Inserting Row
+        db.insert(TABLE, null, values);
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public void dbDelete( ) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        db.delete(TABLE,null,null);
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public List<MissionAgent> dbList() {
+        String sql = "SELECT * FROM "+ TABLE;
+        return dbSQLStatement(sql);
     }
 
     public List<MissionAgent> dbFindPerAgent(Agent agent) {
-        String sql = "SELECT * FROM "+ tableName +" WHERE agent_id = " + agent.getId();
+        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_AgentId+" = " + agent.getId();
         return dbSQLStatement(sql);
     }
 
     public List<MissionAgent> dbFindPerMission(Mission mission) {
-        String sql = "SELECT * FROM "+ tableName +" WHERE mission_id = " + mission.getId();
+        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_MissionId+" = " + mission.getId();
         return dbSQLStatement(sql);
     }
-*/
-    public List<MissionAgent> dbList(Cursor c) {
+
+    public List<MissionAgent> dbSQLStatement(String sql) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
         List<MissionAgent> missionAgentList = new ArrayList<MissionAgent>();
 
         while (c.moveToNext()) {

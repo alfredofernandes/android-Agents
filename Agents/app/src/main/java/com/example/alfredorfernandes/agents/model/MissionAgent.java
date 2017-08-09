@@ -6,31 +6,31 @@ package com.example.alfredorfernandes.agents.model;
 
 public class MissionAgent {
 
-    private long id;
-    private long missionId;
-    private long agentId;
+    private Long id;
+    private Long missionId;
+    private Long agentId;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getMissionId() {
+    public Long getMissionId() {
         return missionId;
     }
 
-    public void setMissionId(long missionId) {
+    public void setMissionId(Long missionId) {
         this.missionId = missionId;
     }
 
-    public long getAgentId() {
+    public Long getAgentId() {
         return agentId;
     }
 
-    public void setAgentId(long agentId) {
+    public void setAgentId(Long agentId) {
         this.agentId = agentId;
     }
 }
