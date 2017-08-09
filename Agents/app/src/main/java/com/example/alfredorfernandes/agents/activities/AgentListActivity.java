@@ -9,12 +9,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.alfredorfernandes.agents.R;
-import com.example.alfredorfernandes.agents.dao.DatabaseHelper;
+import com.example.alfredorfernandes.agents.dao.AgentDAO;
 import com.example.alfredorfernandes.agents.model.Agent;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class AgentListActivity extends AppCompatActivity {
 
@@ -33,12 +31,13 @@ public class AgentListActivity extends AppCompatActivity {
 
     private void loadDataList() {
 
-        /*DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        final List<Agent> agents = databaseHelper.dbListAgents();
+        AgentDAO agentDAO = new AgentDAO();
+        final List<Agent> agents = agentDAO.dbList();
 
         if (agents.size() > 0) {
 
             ListView agentList = (ListView) findViewById(R.id.agent_list);
+
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, agents) {
 
                 @Override
@@ -56,6 +55,6 @@ public class AgentListActivity extends AppCompatActivity {
                 }
             };
             agentList.setAdapter(adapter);
-        }*/
+        }
     }
 }

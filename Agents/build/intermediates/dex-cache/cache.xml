@@ -17,7 +17,83 @@
         optimize="true"
         revision="25.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+<<<<<<< HEAD
         <dex dex="/Users/alfredorfernandes/Documents/Projects/Lambton/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_336d488a9c75b8bf34d121a4742c19de0a09b681/classes.dex" />
+=======
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a7bea4c3a94652065d69ae481dcd83eb431fdd39/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.3.1_3237450d670f6da4ff6142c4e919399865407c4b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/.android/build-cache/93a4ba3f9fe30dba83515dde0d20d0d758331d96/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_34465549c0838a512153fd6a538ed3e716cbb331/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/.android/build-cache/cb3ab9a861f262303f69fd09e41a20361b0cfc48/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d964cac0d2fe11bc8df7df6606d9240a4afca2af/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/.android/build-cache/77468a6b68adb176a1d66fb309e6e748a158b03a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_52fb20e86099654b3d2678a6186a725f995827a6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/.android/build-cache/4f4fc63f04bb2e29a30d77bd728ffac085278030/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4564936083911994d68cfe632f4088a9bdfee873/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f62b481b3c804d5a8fed15742bd577a236e7a666">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_cf69966a0a128d53a85f0366e25ff84b764cd96a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/.android/build-cache/15804ab647af4147575038c2cd65817fc6d45d73/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e70b5a9d54ff56abefece9a84e51e98c5f5c6d43/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/.android/build-cache/50d03fca23f73ffd1990815578f416d8a66f563d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_54e4bb6c7c1fa1727afff9eb85016e2ce8e9c932/classes.dex" />
+>>>>>>> d1333ce1a236dbadad6f5b10b2d6747819d42de3
     </item>
 
 </items>

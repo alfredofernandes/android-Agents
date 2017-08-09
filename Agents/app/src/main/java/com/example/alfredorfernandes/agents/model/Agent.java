@@ -13,7 +13,7 @@ public class Agent
     private String country;
     private String phone;
     private String address;
-    private Bitmap photo;
+    //private Bitmap photo;
     private String username;
     private String password;
     private String level;
@@ -90,12 +90,12 @@ public class Agent
         this.address = address;
     }
 
-    public Bitmap getPhoto() {
+    /*public Bitmap getPhoto() {
         return photo;
     }
 
     public void setPhoto(Bitmap photo) {
         this.photo = photo;
-    }
+    }*/
 
 }
