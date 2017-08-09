@@ -20,19 +20,11 @@ public class MissionDAO {
     public static final String KEY_Date = "date";
     public static final String KEY_Status = "status";
 
-    private MissionDAO missionDAO;
-
-    public MissionDAO(){
-        missionDAO = new MissionDAO();
-    }
-
-    public static String createTable(){
-        return "CREATE TABLE " + TABLE  + "("
-                + KEY_Id  + " INTEGER PRIMARY KEY,"
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE  + "("
+                + KEY_Id  + " INTEGER PRIMARY KEY, "
                 + KEY_Name + " TEXT, "
                 + KEY_Date + " LONG, "
                 + KEY_Status + " TEXT)";
-    }
 
     public void dbInsert(Mission mission) {
 

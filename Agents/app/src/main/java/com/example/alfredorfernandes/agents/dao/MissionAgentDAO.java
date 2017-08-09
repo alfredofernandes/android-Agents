@@ -21,18 +21,10 @@ public class MissionAgentDAO {
     public static final String KEY_MissionId = "missionId";
     public static final String KEY_AgentId = "agentId";
 
-    private MissionAgentDAO missionAgentDAO;
-
-    public MissionAgentDAO(){
-        missionAgentDAO = new MissionAgentDAO();
-    }
-
-    public static String createTable(){
-        return "CREATE TABLE " + TABLE  + "("
-                + KEY_Id  + " INTEGER PRIMARY KEY,"
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE  + "("
+                + KEY_Id  + " INTEGER PRIMARY KEY, "
                 + KEY_MissionId + " INTEGER, "
                 + KEY_AgentId + " INTEGER)";
-    }
 
     public void dbInsert(MissionAgent missionAgent) {
 

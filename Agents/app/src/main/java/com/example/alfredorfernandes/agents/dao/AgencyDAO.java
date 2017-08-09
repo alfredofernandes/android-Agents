@@ -18,18 +18,11 @@ public class AgencyDAO {
     public static final String KEY_Name = "name";
     public static final String KEY_Website = "website";
 
-    private AgencyDAO agencyDAO;
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE  + "("
+            + KEY_Id  + " INTEGER PRIMARY KEY, "
+            + KEY_Name + " TEXT, "
+            + KEY_Website + " TEXT)";
 
-    public AgencyDAO(){
-        agencyDAO = new AgencyDAO();
-    }
-
-    public static String createTable(){
-        return "CREATE TABLE " + TABLE  + "("
-                + KEY_Id  + " INTEGER PRIMARY KEY,"
-                + KEY_Name + " TEXT, "
-                + KEY_Website + " TEXT)";
-    }
 
     public void dbInsert(Agency agency) {
 
