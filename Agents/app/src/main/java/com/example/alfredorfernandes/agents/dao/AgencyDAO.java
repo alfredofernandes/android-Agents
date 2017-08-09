@@ -12,27 +12,17 @@ import java.util.List;
 
 public class AgencyDAO {
 
-    private SQLiteDatabase dataBase;
-    private String tableName;
+    public ContentValues dbInsert(Agency agency) {
 
-    public AgencyDAO(SQLiteDatabase db, String table) {
-        this.dataBase = db;
-        this.tableName = table;
-    }
-
-    public void dbInsert(Agency agency) {
         ContentValues agencyData = new ContentValues();
 
         agencyData.put("name", agency.getName());
         agencyData.put("website", agency.getWebsite());
 
-        dataBase.insert(tableName, null, agencyData);
+        return agencyData;
     }
 
-    public List<Agency> dbListAgencies() {
-
-        String sql = "SELECT * FROM "+ tableName;
-        Cursor c = dataBase.rawQuery(sql, null);
+    public List<Agency> dbList(Cursor c) {
 
         List<Agency> agencyList = new ArrayList<>();
 

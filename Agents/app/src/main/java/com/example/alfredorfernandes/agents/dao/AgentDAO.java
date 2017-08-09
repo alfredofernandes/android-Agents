@@ -14,15 +14,7 @@ import java.util.List;
 
 public class AgentDAO {
 
-    private SQLiteDatabase dataBase;
-    private String tableName;
-
-    public AgentDAO(SQLiteDatabase db, String table) {
-        this.dataBase = db;
-        this.tableName = table;
-    }
-
-    public void dbInsert(Agent agent) {
+    public ContentValues dbInsert(Agent agent) {
 
         ContentValues agentData = new ContentValues();
         agentData.put("name", agent.getName());
@@ -39,22 +31,14 @@ public class AgentDAO {
         agentData.put("password", agent.getPassword());
         agentData.put("level", agent.getLevel());
 
-        dataBase.insert(tableName, null, agentData);
+        return agentData;
     }
 
-    public List<Agent> dbListAgents() {
-
-        String sql = "SELECT * FROM "+ tableName;
-        return dbSQLStatement(sql);
-    }
-
-    public List<Agent> dbSQLStatement(String sql) {
-
-        Cursor c = dataBase.rawQuery(sql, null);
+    public List<Agent> dbList(Cursor c) {
 
         List<Agent> agentsList = new ArrayList<>();
 
-        while (c.moveToFirst() || c.getCount() > 0) {
+        while (c.moveToFirst()) {
 
             Agent agent = new Agent();
 
@@ -83,14 +67,12 @@ public class AgentDAO {
 
     }
 
-    public Agent checkLogin(String username, String password) {
-
-        String sql = "SELECT * FROM "+ tableName +" WHERE username=? AND password=?";
-        Cursor c = dataBase.rawQuery(sql, new String[]{username, password});
+    public Agent checkLogin(Cursor c) {
 
         Agent agent = new Agent();
 
         if (c.moveToFirst()) {
+
             agent.setId(c.getLong(c.getColumnIndex("id")));
             agent.setName(c.getString(c.getColumnIndex("name")));
             agent.setAgencyId(c.getLong(c.getColumnIndex("agency_id")));

@@ -25,8 +25,6 @@ public class MenuActivity extends AppCompatActivity {
         Button addAgent = (Button) findViewById(R.id.add_agent_button);
         Button logout = (Button) findViewById(R.id.logout_button);
 
-        //createDataTest();
-
         agentList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +61,7 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(goToActivity);
     }
 
-    private void createDataTest() {
+    /*private void createDataTest() {
 
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
@@ -83,16 +81,6 @@ public class MenuActivity extends AppCompatActivity {
         databaseHelper.dbInsertAgency(agency2);
         databaseHelper.dbInsertAgency(agency3);
 
-        Agent agent = new Agent();
-        agent.setName("Juliana Lacerda");
-        agent.setLevel("001");
-        agent.setUsername("juliana");
-        agent.setPassword("123");
-        agent.setCountry("Brazil");
-        agent.setPhone("(647) 9999999");
-        agent.setAddress("140 Erskine Ave");
-        agent.setAgencyId((long) 1);
 
-        databaseHelper.dbInsertAgent(agent);
-    }
+    }*/
 }

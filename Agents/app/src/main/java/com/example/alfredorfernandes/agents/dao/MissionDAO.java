@@ -12,32 +12,17 @@ import java.util.List;
 
 public class MissionDAO {
 
-    private SQLiteDatabase dataBase;
-    private String tableName;
-
-    public MissionDAO(SQLiteDatabase db, String table) {
-        this.dataBase = db;
-        this.tableName = table;
-    }
-
-    public void dbInsert(Mission mission) {
+    public ContentValues dbInsert(Mission mission) {
 
         ContentValues missionData = new ContentValues();
         missionData.put("name", mission.getName());
         missionData.put("date", persistDate(mission.getDate()));
         missionData.put("status", mission.getStatus().toString());
 
-        dataBase.insert(tableName, null, missionData);
+        return missionData;
     }
 
-    public List<Mission> dbListMissions() {
-        String sql = "SELECT * FROM "+ tableName;
-        return dbSQLStatement(sql);
-    }
-
-    public List<Mission> dbSQLStatement(String sql) {
-
-        Cursor c = dataBase.rawQuery(sql, null);
+    public List<Mission> dbList(Cursor c) {
 
         List<Mission> missionList = new ArrayList<Mission>();
 

@@ -14,26 +14,19 @@ import java.util.List;
 
 public class MissionAgentDAO {
 
-    private SQLiteDatabase dataBase;
-    private String tableName;
 
-    public MissionAgentDAO(SQLiteDatabase db, String table) {
-        this.dataBase = db;
-        this.tableName = table;
-    }
-
-    public void dbInsert(MissionAgent missionAgent) {
+    public ContentValues dbInsert(MissionAgent missionAgent) {
 
         ContentValues missionAgentData = new ContentValues();
         missionAgentData.put("mission_id", missionAgent.getMissionId());
         missionAgentData.put("agent_id", missionAgent.getAgentId());
 
-        dataBase.insert(tableName, null, missionAgentData);
+        return missionAgentData;
     }
 
-    public List<MissionAgent> dbListMissionsAgents() {
+    /*public List<MissionAgent> dbListMissionsAgents(Cursor c) {
         String sql = "SELECT * FROM "+ tableName;
-        return dbSQLStatement(sql);
+        return dbSQLStatement(Cursor c);
     }
 
     public List<MissionAgent> dbFindPerAgent(Agent agent) {
@@ -45,10 +38,8 @@ public class MissionAgentDAO {
         String sql = "SELECT * FROM "+ tableName +" WHERE mission_id = " + mission.getId();
         return dbSQLStatement(sql);
     }
-
-    public List<MissionAgent> dbSQLStatement(String sql) {
-        Cursor c = dataBase.rawQuery(sql, null);
-
+*/
+    public List<MissionAgent> dbList(Cursor c) {
         List<MissionAgent> missionAgentList = new ArrayList<MissionAgent>();
 
         while (c.moveToNext()) {
