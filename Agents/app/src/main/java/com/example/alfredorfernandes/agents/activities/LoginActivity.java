@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         agent.setName("Juliana Lacerda");
         agent.setUsername("juliana");
         agent.setPassword("123");
+        agent.setAgencyId((long)1);
         agent.setAddress("160 Erskine Ave");
         agent.setCountry("Brazil");
         agent.setLevel("002");

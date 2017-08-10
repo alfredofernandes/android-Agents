@@ -3,6 +3,7 @@ package com.example.alfredorfernandes.agents.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,13 +26,6 @@ public class AgentDetailActivity extends AppCompatActivity {
 
         setTitle("AGENT PROFILE");
 
-        Intent intent = getIntent();
-        Agent agent = (Agent) intent.getSerializableExtra("agent");
-
-        if (agent != null) {
-           loadData(agent);
-        }
-
         profileImage = (ImageView) findViewById(R.id.profile_image);
         profileName = (TextView) findViewById(R.id.profile_name);
         profileLevel = (TextView) findViewById(R.id.profile_level);
@@ -48,11 +42,18 @@ public class AgentDetailActivity extends AppCompatActivity {
         buttonSms = (Button) findViewById(R.id.profile_btn_sms);
         buttonPhoto = (Button) findViewById(R.id.profile_btn_photo);
 
+        Intent intent = getIntent();
+        Agent agent = (Agent) intent.getSerializableExtra("agent");
+
+        if (agent != null) {
+            loadData(agent);
+        }
+
     }
 
     private void loadData(Agent agent) {
 
-        profileName.setText(agent.getName());
+        profileName.setText(agent.getName().toString());
         profileLevel.setText(agent.getLevel());
         profileAddress.setText(agent.getAddress());
         profilePhone.setText(agent.getPhone());
