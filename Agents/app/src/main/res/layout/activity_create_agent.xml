@@ -16,6 +16,52 @@
             android:inputType="text"
             android:maxLines="1" />
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/create_agent_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:hint="Username"
+                android:inputType="text"
+                android:maxLines="1" />
+
+            <EditText
+                android:id="@+id/create_agent_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/create_agent_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Address"
+            android:inputType="text"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/create_agent_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:maxLines="1" />
+
         <Spinner
             android:id="@+id/create_agent_level"
             android:layout_width="fill_parent"
@@ -33,24 +79,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
-
-        <EditText
-            android:id="@+id/create_agent_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Phone Number"
-            android:inputType="phone"
-            android:maxLines="1" />
-
-        <EditText
-            android:id="@+id/create_agent_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Address"
-            android:inputType="text"
-            android:maxLines="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
