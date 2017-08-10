@@ -1,9 +1,11 @@
 package com.example.alfredorfernandes.agents.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,11 +18,29 @@ import java.util.List;
 
 public class AgentListActivity extends AppCompatActivity {
 
+    private ListView agentsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_list);
 
+        // Agent List
+        agentsList = (ListView) findViewById(R.id.agent_list);
+        registerForContextMenu(agentsList);
+
+        agentsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Agent agent = (Agent) agentsList.getItemAtPosition(position);
+
+                Intent intentGoToFrom = new Intent(AgentListActivity.this, AgentDetailActivity.class);
+                intentGoToFrom.putExtra("agent", agent);
+                startActivity(intentGoToFrom);
+            }
+        });
     }
 
     @Override
