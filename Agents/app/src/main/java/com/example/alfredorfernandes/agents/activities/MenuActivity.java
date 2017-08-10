@@ -38,7 +38,9 @@ public class MenuActivity extends AppCompatActivity {
         addAgent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MenuActivity.this, "Button 'Add Agent' Clicked!", Toast.LENGTH_SHORT).show();
+                Intent goToCreateAgentActivity = new Intent(MenuActivity.this, CreateAgentActivity.class);
+                startActivity(goToCreateAgentActivity);
+                finish();
             }
         });
 
