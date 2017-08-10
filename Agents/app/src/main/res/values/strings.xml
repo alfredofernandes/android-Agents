@@ -14,6 +14,7 @@
 
     <!--CreateAgentActivity-->
     <string-array name="spinner_agent_level">
+        <item>Level</item>
         <item>001</item>
         <item>002</item>
         <item>003</item>
@@ -22,6 +23,7 @@
     </string-array>
 
     <string-array name="spinner_agent_country">
+        <item>Country</item>
         <item>Mexico</item>
         <item>Brazil</item>
         <item>India</item>
