@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alfredorfernandes.agents.R;
@@ -21,6 +22,12 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         setTitle("SYSTEM AGENTS");
+
+        Intent intent = getIntent();
+        String nameAgent =  intent.getStringExtra("username");
+
+        TextView currentUser = (TextView) findViewById(R.id.txt_title);
+        currentUser.setText("Hi, "+ nameAgent);
 
         Button agentList = (Button) findViewById(R.id.agent_list_button);
         Button searchAgent = (Button) findViewById(R.id.search_agent_button);
