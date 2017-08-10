@@ -79,57 +79,47 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"/>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/profile_btn_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="5dp">
+            android:text="INFO"/>
 
-            <Button
-                android:id="@+id/profile_btn_info"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="INFO"
-                android:layout_weight="1"/>
+        <Button
+            android:id="@+id/profile_btn_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SMS"/>
 
-            <Button
-                android:id="@+id/profile_btn_sms"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="SMS"
-                android:layout_weight="1"/>
+        <Button
+            android:id="@+id/profile_btn_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CALL" />
 
-            <Button
-                android:id="@+id/profile_btn_call"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="CALL"
-                android:layout_weight="1"/>
+        <Button
+            android:id="@+id/profile_btn_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MAP"/>
 
-            <Button
-                android:id="@+id/profile_btn_map"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="MAP"
-                android:layout_weight="1"/>
+        <Button
+            android:id="@+id/profile_btn_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WEB"/>
 
-            <Button
-                android:id="@+id/profile_btn_web"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="WEB"
-                android:layout_weight="1"/>
+        <Button
+            android:id="@+id/profile_btn_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IMG"/>
 
-            <Button
-                android:id="@+id/profile_btn_photo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="IMG"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/profile_btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BACK"/>
 
 
     </LinearLayout>

@@ -41,7 +41,7 @@ public class AgencyAdapter extends ArrayAdapter<Agency> {
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setText(values.get(position).getName());
-        
+
 
         return label;
     }
