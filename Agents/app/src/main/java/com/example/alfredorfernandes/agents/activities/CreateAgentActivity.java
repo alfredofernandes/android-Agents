@@ -1,6 +1,5 @@
 package com.example.alfredorfernandes.agents.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,22 +10,30 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.alfredorfernandes.agents.R;
+import com.example.alfredorfernandes.agents.adapter.AgencyAdapter;
+import com.example.alfredorfernandes.agents.dao.AgencyDAO;
+import com.example.alfredorfernandes.agents.dao.AgentDAO;
+import com.example.alfredorfernandes.agents.helper.AgentHelper;
+import com.example.alfredorfernandes.agents.model.Agency;
+import com.example.alfredorfernandes.agents.model.Agent;
+
+import java.util.List;
 
 public class CreateAgentActivity extends AppCompatActivity {
 
+    private AgentHelper helper;
     private ArrayAdapter<CharSequence> adapter;
+    private AgencyAdapter adapterAgency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_agent);
+        helper = new AgentHelper(this);
 
-        EditText name = (EditText) findViewById(R.id.create_agent_name);
         Spinner level = (Spinner) findViewById(R.id.create_agent_level);
         Spinner agency = (Spinner) findViewById(R.id.create_agent_agency);
         Spinner country = (Spinner) findViewById(R.id.create_agent_country);
-        EditText phoneNumber = (EditText) findViewById(R.id.create_agent_phone_number);
-        EditText address = (EditText) findViewById(R.id.create_agent_address);
         Button cancel = (Button) findViewById(R.id.create_agent_cancel);
         Button save = (Button) findViewById(R.id.create_agent_save);
 
@@ -35,24 +42,15 @@ public class CreateAgentActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         level.setAdapter(adapter);
 
-        // Load Agency from database
-        adapter = ArrayAdapter.createFromResource(this, R.array.spinner_agent_country, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        agency.setAdapter(adapter);
+        // Agency Spinner
+        List<Agency> agencies = getAgencies();
+        adapterAgency = new AgencyAdapter(this, android.R.layout.simple_spinner_item, agencies);
+        agency.setAdapter(adapterAgency);
 
         // Agent Country Spinner
         adapter = ArrayAdapter.createFromResource(this, R.array.spinner_agent_country, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        agency.setAdapter(adapter);
-
-
-        // Getting the user's input
-//        String agentName = name.getText().toString();
-//        String agentAddress = address.getText().toString();
-//        String agentPhoneNumber = phoneNumber.getText().toString();
-//        String agentLevel = level.getSelectedItem().toString();
-//        String agentAgency = agency.getSelectedItem().toString();
-//        String agentCountry = country.getSelectedItem().toString();
+        country.setAdapter(adapter);
 
         // Cancel Button
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -66,9 +64,20 @@ public class CreateAgentActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CreateAgentActivity.this, "Save Button was clicked!", Toast.LENGTH_SHORT).show();
+                Agent agent = helper.helperAgent();
+                AgentDAO dao = new AgentDAO();
+                dao.dbInsert(agent);
+                Toast.makeText(CreateAgentActivity.this, "Agent " + agent.getName() + " was saved!", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
+
+    }
+
+    private List<Agency> getAgencies() {
+
+        AgencyDAO dao = new AgencyDAO();
+        return dao.dbList();
 
     }
 }
