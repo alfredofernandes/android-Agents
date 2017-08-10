@@ -1,12 +1,14 @@
 package com.example.alfredorfernandes.agents.adapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.alfredorfernandes.agents.R;
 import com.example.alfredorfernandes.agents.model.Agency;
 
 import java.util.List;
@@ -15,12 +17,15 @@ public class AgencyAdapter extends ArrayAdapter<Agency> {
 
     private Context context;
     private List<Agency> values;
+    private LayoutInflater flater;
 
-    public AgencyAdapter(Context context, int resource, List<Agency> values) {
+    public AgencyAdapter(Activity context, int resource, List<Agency> values) {
         super(context, resource, values);
 
         this.context = context;
         this.values = values;
+
+        flater = context.getLayoutInflater();
     }
 
     public int getCount() {
@@ -38,21 +43,22 @@ public class AgencyAdapter extends ArrayAdapter<Agency> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        TextView label = new TextView(context);
-        label.setTextColor(Color.BLACK);
-        label.setText(values.get(position).getName());
-        
+        View rowview = flater.inflate(R.layout.listitens_agency,null,true);
 
-        return label;
+        TextView label = (TextView) rowview.findViewById(R.id.title);
+        label.setText(values.get(position).getName());
+
+        return rowview;
     }
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
 
-        TextView label = new TextView(context);
-        label.setTextColor(Color.BLACK);
+        View rowview = flater.inflate(R.layout.listitens_agency,null,true);
+
+        TextView label = (TextView) rowview.findViewById(R.id.title);
         label.setText(values.get(position).getName());
 
-        return label;
+        return rowview;
     }
 }
