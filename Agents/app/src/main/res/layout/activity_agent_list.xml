@@ -18,9 +18,9 @@ android:orientation="vertical">
         android:layout_height="300dp"/>
 
     <Button
-        android:id="@+id/agent_button_return"
+        android:id="@+id/agent_button_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Return" />
+        android:text="Back" />
 
 </LinearLayout>

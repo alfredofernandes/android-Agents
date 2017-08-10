@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.alfredorfernandes.agents.activities.LoginActivity;
 import com.example.alfredorfernandes.agents.model.Agency;
 import com.example.alfredorfernandes.agents.model.Agent;
 import com.example.alfredorfernandes.agents.model.MissionAgent;
@@ -24,7 +25,6 @@ public class AgencyDAO {
             + KEY_Id  + " INTEGER PRIMARY KEY, "
             + KEY_Name + " TEXT, "
             + KEY_Website + " TEXT)";
-
 
     public void dbInsert(Agency agency) {
 
