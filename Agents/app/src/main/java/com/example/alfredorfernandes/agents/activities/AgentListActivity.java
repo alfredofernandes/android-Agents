@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,6 +40,16 @@ public class AgentListActivity extends AppCompatActivity {
                 Intent intentGoToFrom = new Intent(AgentListActivity.this, AgentDetailActivity.class);
                 intentGoToFrom.putExtra("agent", agent);
                 startActivity(intentGoToFrom);
+            }
+        });
+
+        // Agent List Back
+        Button returnButton = (Button) findViewById(R.id.agent_button_back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

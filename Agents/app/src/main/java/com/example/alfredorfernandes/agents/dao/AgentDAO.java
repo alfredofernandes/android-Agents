@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.example.alfredorfernandes.agents.activities.LoginActivity;
 import com.example.alfredorfernandes.agents.model.Agent;
 
 import java.io.ByteArrayOutputStream;
@@ -39,6 +40,7 @@ public class AgentDAO {
                 + KEY_Username + " TEXT, "
                 + KEY_Password + " TEXT, "
                 + KEY_Level + " TEXT)";
+
 
     public void dbInsert(Agent agent) {
 
@@ -145,5 +147,4 @@ public class AgentDAO {
     public static Bitmap getImage(byte[] image) {
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
-
 }

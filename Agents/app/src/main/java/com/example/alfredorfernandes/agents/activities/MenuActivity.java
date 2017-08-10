@@ -49,7 +49,6 @@ public class MenuActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity(LoginActivity.class);
                 finish();
             }
         });
@@ -60,27 +59,4 @@ public class MenuActivity extends AppCompatActivity {
         Intent goToActivity = new Intent(MenuActivity.this, activity);
         startActivity(goToActivity);
     }
-
-    /*private void createDataTest() {
-
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
-
-        Agency agency1 = new Agency();
-        agency1.setName("BAGG");
-        agency1.setWebsite("http://www.bagg.com/");
-
-        Agency agency2 = new Agency();
-        agency2.setName("ADECCO");
-        agency2.setWebsite("http://www.adecco.ca/en");
-
-        Agency agency3 = new Agency();
-        agency3.setName("RANDSTAD");
-        agency3.setWebsite("https://www.randstad.ca/");
-
-        databaseHelper.dbInsertAgency(agency1);
-        databaseHelper.dbInsertAgency(agency2);
-        databaseHelper.dbInsertAgency(agency3);
-
-
-    }*/
 }
