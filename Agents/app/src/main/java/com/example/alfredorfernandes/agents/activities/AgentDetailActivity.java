@@ -1,8 +1,14 @@
 package com.example.alfredorfernandes.agents.activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +24,9 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
 
     private ImageView profileImage;
     private TextView profileName, profileLevel, profileAgency, profileAgencyWeb, profileCountry, profilePhone, profileAddress;
-    private Button buttonInfo, buttonSms, buttonMap, buttonCall, buttonPhoto, buttonWeb, buttonBack;
+    private Button buttonInfo, buttonBack;
+    private Agent currentAgent;
+    private Agency currentAgency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,26 +45,68 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
         profileAddress = (TextView) findViewById(R.id.profile_address);
 
         buttonInfo = (Button) findViewById(R.id.profile_btn_info);
-        buttonCall = (Button) findViewById(R.id.profile_btn_call);
-        buttonMap = (Button) findViewById(R.id.profile_btn_map);
-        buttonWeb = (Button) findViewById(R.id.profile_btn_web);
-        buttonSms = (Button) findViewById(R.id.profile_btn_sms);
-        buttonPhoto = (Button) findViewById(R.id.profile_btn_photo);
         buttonBack = (Button) findViewById(R.id.profile_btn_back);
 
         buttonInfo.setOnClickListener(this);
-        buttonCall.setOnClickListener(this);
-        buttonMap.setOnClickListener(this);
-        buttonWeb.setOnClickListener(this);
-        buttonSms.setOnClickListener(this);
-        buttonPhoto.setOnClickListener(this);
         buttonBack.setOnClickListener(this);
 
         Intent intent = getIntent();
-        Agent agent = (Agent) intent.getSerializableExtra("agent");
+        currentAgent = (Agent) intent.getSerializableExtra("agent");
 
-        if (agent != null) {
-            loadData(agent);
+        if (currentAgent != null) {
+            loadData(currentAgent);
+        }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_agent, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_photo:
+                Toast.makeText(this, "Photo button was clicked.", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.menu_sms:
+
+                String sms = "sms:" + currentAgent.getPhone();
+                openMenu(sms);
+                return true;
+
+            case R.id.menu_call:
+
+                if (ActivityCompat.checkSelfPermission(AgentDetailActivity.this, Manifest.permission.CALL_PHONE) !=
+                        PackageManager.PERMISSION_GRANTED) {
+
+                    ActivityCompat.requestPermissions(AgentDetailActivity.this, new String[] {Manifest.permission.CALL_PHONE}, 123);
+
+                } else {
+
+                    String call = "tel:" + currentAgent.getPhone();
+                    openMenu(call);
+                }
+
+                return true;
+
+            case R.id.menu_web:
+
+                String site = currentAgency.getWebsite();
+                if (!site.startsWith("http://")) { site = "http://" + site;}
+                openMenu(site);
+                return true;
+
+            case R.id.menu_map:
+
+                String map = "geo:0,0?q=" + currentAgent.getAddress();
+                openMenu(map);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -68,9 +118,9 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
         profilePhone.setText("Phone: " + agent.getPhone());
         profileCountry.setText("Country: " + agent.getCountry());
 
-        Agency agency = getAgency(agent.getAgencyId().toString());
-        profileAgency.setText("Agency name: " +agency.getName());
-        profileAgencyWeb.setText("Agency website: " +agency.getWebsite());
+        currentAgency = getAgency(agent.getAgencyId().toString());
+        profileAgency.setText("Agency name: " +currentAgency.getName());
+        profileAgencyWeb.setText("Agency website: " +currentAgency.getWebsite());
 
     }
 
@@ -84,26 +134,21 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
 
         switch (v.getId()) {
             case R.id.profile_btn_info:
-                Toast.makeText(this, "Info button was clicked.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "MISSION button was clicked.", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.profile_btn_call:
-                Toast.makeText(this, "Call button was clicked.", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.profile_btn_map:
-                Toast.makeText(this, "Map button was clicked.", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.profile_btn_web:
-                Toast.makeText(this, "Web button was clicked.", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.profile_btn_sms:
-                Toast.makeText(this, "SMS button was clicked.", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.profile_btn_photo:
-                Toast.makeText(this, "Photo button was clicked.", Toast.LENGTH_SHORT).show();
-                break;
+
             case R.id.profile_btn_back:
                 finish();
                 break;
         }
+    }
+
+    private void openMenu(String url) {
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+
+        startActivity(intent);
+
     }
 }

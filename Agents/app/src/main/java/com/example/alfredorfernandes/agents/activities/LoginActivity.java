@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         if (agent.getId() != null) {
 
             Intent goAgentList = new Intent(LoginActivity.this, MenuActivity.class);
-            goAgentList.putExtra("username", agent.getUsername());
+            goAgentList.putExtra("username", agent.getName());
             goAgentList.putExtra("logged", true);
             startActivity(goAgentList);
 
