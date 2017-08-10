@@ -9,10 +9,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.alfredorfernandes.agents.R;
+import com.example.alfredorfernandes.agents.dao.AgentDAO;
 import com.example.alfredorfernandes.agents.model.Agent;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
 public class AgentListActivity extends AppCompatActivity {
 
@@ -20,29 +20,41 @@ public class AgentListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_list);
+
     }
 
-    private void AgentList() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataList();
+    }
 
-        final ArrayList<Agent> agents = new ArrayList<>();
+    private void loadDataList() {
 
-        ListView agentList = (ListView) findViewById(R.id.agent_list);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, agents) {
+        AgentDAO agentDAO = new AgentDAO();
+        final List<Agent> agents = agentDAO.dbList();
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+        if (agents.size() > 0) {
 
-                Agent agent = agents.get(position);
+            ListView agentList = (ListView) findViewById(R.id.agent_list);
 
-                text1.setText(agent.getName());
-                text2.setText(agent.getLevel().toString());
+            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, agents) {
 
-                return view;
-            }
-        };
-        agentList.setAdapter(adapter);
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                    Agent agent = agents.get(position);
+
+                    text1.setText(agent.getName());
+                    text2.setText(agent.getLevel().toString());
+
+                    return view;
+                }
+            };
+            agentList.setAdapter(adapter);
+        }
     }
 }

@@ -3,24 +3,24 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
-<TextView
-    android:id="@+id/title_agent"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:text="Agents List"
-    android:textAlignment="center"
-    android:textSize="25dp" />
+    <TextView
+        android:id="@+id/title_agent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Agents List"
+        android:textAlignment="center"
+        android:textSize="25dp" />
 
-<ListView
-    android:id="@+id/agent_list"
-    android:layout_width="match_parent"
-    android:layout_height="300dp"/>
+    <ListView
+        android:id="@+id/agent_list"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
 
-<Button
-    android:id="@+id/agent_button_return"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Return" />
+    <Button
+        android:id="@+id/agent_button_return"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return" />
 
 </LinearLayout>

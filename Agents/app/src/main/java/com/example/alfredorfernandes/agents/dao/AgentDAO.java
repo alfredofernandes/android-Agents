@@ -14,60 +14,76 @@ import java.util.List;
 
 public class AgentDAO {
 
-    private SQLiteDatabase dataBase;
-    private String tableName;
+    public static final String TABLE = "Agent";
 
-    public AgentDAO(SQLiteDatabase db, String table) {
-        this.dataBase = db;
-        this.tableName = table;
-    }
+    // Labels Table Columns names
+    public static final String KEY_Id = "id";
+    public static final String KEY_Name = "name";
+    public static final String KEY_AgencyId = "agencyId";
+    public static final String KEY_Country = "country";
+    public static final String KEY_Phone = "phone";
+    public static final String KEY_Address = "address";
+    //public static final String KEY_Photo = "photo";
+    public static final String KEY_Username = "username";
+    public static final String KEY_Password = "password";
+    public static final String KEY_Level = "level";
+
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE  + "("
+                + KEY_Id  + " INTEGER PRIMARY KEY, "
+                + KEY_AgencyId  + " INTEGER,"
+                + KEY_Name + " TEXT, "
+                + KEY_Country + " TEXT, "
+                + KEY_Phone + " TEXT, "
+                + KEY_Address + " TEXT, "
+                //+ KEY_Photo + " BLOB, "
+                + KEY_Username + " TEXT, "
+                + KEY_Password + " TEXT, "
+                + KEY_Level + " TEXT)";
 
     public void dbInsert(Agent agent) {
 
-        ContentValues agentData = new ContentValues();
-        agentData.put("name", agent.getName());
-        agentData.put("agency_id", agent.getAgencyId());
-        agentData.put("country", agent.getCountry());
-        agentData.put("phone", agent.getPhone());
-        agentData.put("address", agent.getAddress());
-        agentData.put("photo", getBytes(agent.getPhoto()));
-        agentData.put("username", agent.getUsername());
-        agentData.put("password", agent.getPassword());
-        agentData.put("level", agent.getLevel());
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
-        dataBase.insert(tableName, null, agentData);
+        ContentValues values = new ContentValues();
+        values.put(KEY_Name, agent.getName());
+        values.put(KEY_AgencyId, agent.getAgencyId());
+        values.put(KEY_Country, agent.getCountry());
+        values.put(KEY_Phone, agent.getPhone());
+        values.put(KEY_Address, agent.getAddress());
+
+        /*if (agent.getPhoto() != null) {
+            values.put(KEY_Photo, getBytes(agent.getPhoto()));
+        }*/
+
+        values.put(KEY_Username, agent.getUsername());
+        values.put(KEY_Password, agent.getPassword());
+        values.put(KEY_Level, agent.getLevel());
+
+        // Inserting Row
+        db.insert(TABLE, null, values);
+        DatabaseManager.getInstance().closeDatabase();
     }
 
-    public List<Agent> dbListAgents() {
+    public void dbDelete( ) {
 
-        String sql = "SELECT * FROM "+ tableName;
-        return dbSQLStatement(sql);
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        db.delete(TABLE,null,null);
+        DatabaseManager.getInstance().closeDatabase();
     }
 
-    public List<Agent> dbSQLStatement(String sql) {
+    public List<Agent> dbList() {
 
-        Cursor c = dataBase.rawQuery(sql, null);
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String sql = "SELECT * FROM " + TABLE;
+        Cursor c = db.rawQuery(sql, null);
 
         List<Agent> agentsList = new ArrayList<>();
 
         while (c.moveToNext()) {
 
-            Agent agent = new Agent();
-
-            agent.setId(c.getLong(c.getColumnIndex("id")));
-            agent.setName(c.getString(c.getColumnIndex("name")));
-            agent.setAgencyId(c.getLong(c.getColumnIndex("agency_id")));
-            agent.setCountry(c.getString(c.getColumnIndex("country")));
-            agent.setPhone(c.getString(c.getColumnIndex("phone")));
-            agent.setAddress(c.getString(c.getColumnIndex("address")));
-            agent.setLevel(c.getString(c.getColumnIndex("level")));
-
-            byte[] image = c.getBlob(c.getColumnIndex("photo"));
-            agent.setPhoto(getImage(image));
-
-            agent.setUsername(c.getString(c.getColumnIndex("username")));
-            agent.setPassword(c.getString(c.getColumnIndex("password")));
-
+            Agent agent = getObject(c);
             agentsList.add(agent);
         }
 
@@ -79,31 +95,43 @@ public class AgentDAO {
 
     public Agent checkLogin(String username, String password) {
 
-        String sql = "SELECT * FROM "+ tableName +" WHERE username=? AND password=?";
-        Cursor c = dataBase.rawQuery(sql, new String[]{username, password});
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_Username+"=? AND "+KEY_Password+"=?";
+        Cursor c = db.rawQuery(sql, new String[]{username, password});
 
         Agent agent = new Agent();
 
         if (c.moveToFirst()) {
-            agent.setId(c.getLong(c.getColumnIndex("id")));
-            agent.setName(c.getString(c.getColumnIndex("name")));
-            agent.setAgencyId(c.getLong(c.getColumnIndex("agency_id")));
-            agent.setCountry(c.getString(c.getColumnIndex("country")));
-            agent.setPhone(c.getString(c.getColumnIndex("phone")));
-            agent.setAddress(c.getString(c.getColumnIndex("address")));
-
-            byte[] image = c.getBlob(c.getColumnIndex("photo"));
-            agent.setPhoto(getImage(image));
-
-            agent.setUsername(c.getString(c.getColumnIndex("username")));
-            agent.setPassword(c.getString(c.getColumnIndex("password")));
-
-            agent.setLevel(c.getString(c.getColumnIndex("level")));
-
+            agent = getObject(c);
         }
         c.close();
 
         return agent;
+    }
+
+    private Agent getObject(Cursor c) {
+
+        Agent agent = new Agent();
+
+        agent.setId(c.getLong(c.getColumnIndex(KEY_Id )));
+        agent.setName(c.getString(c.getColumnIndex(KEY_Name)));
+        agent.setAgencyId(c.getLong(c.getColumnIndex(KEY_AgencyId)));
+        agent.setCountry(c.getString(c.getColumnIndex(KEY_Country)));
+        agent.setPhone(c.getString(c.getColumnIndex(KEY_Phone)));
+        agent.setAddress(c.getString(c.getColumnIndex(KEY_Address)));
+        agent.setLevel(c.getString(c.getColumnIndex(KEY_Level)));
+
+        /*byte[] image = c.getBlob(c.getColumnIndex(KEY_Phone));
+        if (image != null) {
+            agent.setPhoto(getImage(image));
+        }*/
+
+        agent.setUsername(c.getString(c.getColumnIndex(KEY_Username)));
+        agent.setPassword(c.getString(c.getColumnIndex(KEY_Password)));
+
+        return agent;
+
     }
 
     // convert from bitmap to byte array

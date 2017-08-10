@@ -1,7 +1,6 @@
 package com.example.alfredorfernandes.agents.dao;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,36 +11,55 @@ import java.util.List;
 
 public class AgencyDAO {
 
-    private SQLiteDatabase dataBase;
-    private String tableName;
+    public static final String TABLE = "Agency";
 
-    public AgencyDAO(SQLiteDatabase db, String table) {
-        this.dataBase = db;
-        this.tableName = table;
-    }
+    // Labels Table Columns names
+    public static final String KEY_Id = "id";
+    public static final String KEY_Name = "name";
+    public static final String KEY_Website = "website";
+
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE  + "("
+            + KEY_Id  + " INTEGER PRIMARY KEY, "
+            + KEY_Name + " TEXT, "
+            + KEY_Website + " TEXT)";
+
 
     public void dbInsert(Agency agency) {
-        ContentValues agencyData = new ContentValues();
 
-        agencyData.put("name", agency.getName());
-        agencyData.put("website", agency.getWebsite());
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
-        dataBase.insert(tableName, null, agencyData);
+        ContentValues values = new ContentValues();
+        values.put(KEY_Name, agency.getName());
+        values.put(KEY_Website, agency.getWebsite());
+
+        // Inserting Row
+        db.insert(TABLE, null, values);
+        DatabaseManager.getInstance().closeDatabase();
     }
 
-    public List<Agency> dbListAgencies() {
+    public void dbDelete( ) {
 
-        String sql = "SELECT * FROM "+ tableName;
-        Cursor c = dataBase.rawQuery(sql, null);
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        db.delete(TABLE,null,null);
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public List<Agency> dbList() {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String sql = "SELECT * FROM " + TABLE;
+        Cursor c = db.rawQuery(sql, null);
 
         List<Agency> agencyList = new ArrayList<>();
 
         while (c.moveToNext()) {
             Agency agency = new Agency();
 
-            agency.setId(c.getLong(c.getColumnIndex("id")));
-            agency.setName(c.getString(c.getColumnIndex("name")));
-            agency.setWebsite(c.getString(c.getColumnIndex("website")));
+            agency.setId(c.getLong(c.getColumnIndex(KEY_Id)));
+            agency.setName(c.getString(c.getColumnIndex(KEY_Name)));
+            agency.setWebsite(c.getString(c.getColumnIndex(KEY_Website)));
 
             agencyList.add(agency);
         }

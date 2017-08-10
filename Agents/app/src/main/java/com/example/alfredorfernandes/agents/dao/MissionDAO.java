@@ -12,42 +12,58 @@ import java.util.List;
 
 public class MissionDAO {
 
-    private SQLiteDatabase dataBase;
-    private String tableName;
+    public static final String TABLE = "Mission";
 
-    public MissionDAO(SQLiteDatabase db, String table) {
-        this.dataBase = db;
-        this.tableName = table;
-    }
+    // Labels Table Columns names
+    public static final String KEY_Id = "id";
+    public static final String KEY_Name = "name";
+    public static final String KEY_Date = "date";
+    public static final String KEY_Status = "status";
+
+    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE  + "("
+                + KEY_Id  + " INTEGER PRIMARY KEY, "
+                + KEY_Name + " TEXT, "
+                + KEY_Date + " LONG, "
+                + KEY_Status + " TEXT)";
 
     public void dbInsert(Mission mission) {
 
-        ContentValues missionData = new ContentValues();
-        missionData.put("name", mission.getName());
-        missionData.put("date", persistDate(mission.getDate()));
-        missionData.put("status", mission.getStatus().toString());
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
-        dataBase.insert(tableName, null, missionData);
+        ContentValues values = new ContentValues();
+        values.put(KEY_Name, mission.getName());
+        values.put(KEY_Date, persistDate(mission.getDate()));
+        values.put(KEY_Status, mission.getStatus().toString());
+
+        // Inserting Row
+        db.insert(TABLE, null, values);
+        DatabaseManager.getInstance().closeDatabase();
     }
 
-    public List<Mission> dbListMissions() {
-        String sql = "SELECT * FROM "+ tableName;
-        return dbSQLStatement(sql);
+    public void dbDelete( ) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        db.delete(TABLE,null,null);
+        DatabaseManager.getInstance().closeDatabase();
     }
 
-    public List<Mission> dbSQLStatement(String sql) {
+    public List<Mission> dbList() {
 
-        Cursor c = dataBase.rawQuery(sql, null);
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String sql = "SELECT * FROM " + TABLE;
+        Cursor c = db.rawQuery(sql, null);
 
         List<Mission> missionList = new ArrayList<Mission>();
 
         while (c.moveToNext()) {
-            Mission.MissionStatus status = Mission.MissionStatus.valueOf(c.getString(c.getColumnIndex("status")));
+            Mission.MissionStatus status = Mission.MissionStatus.valueOf(c.getString(c.getColumnIndex(KEY_Status)));
 
             Mission mission = new Mission();
-            mission.setId(c.getLong(c.getColumnIndex("id")));
-            mission.setName(c.getString(c.getColumnIndex("name")));
-            mission.setDate(loadDate(c, c.getColumnIndex("date")));
+            mission.setId(c.getLong(c.getColumnIndex(KEY_Id)));
+            mission.setName(c.getString(c.getColumnIndex(KEY_Name)));
+            mission.setDate(loadDate(c, c.getColumnIndex(KEY_Date)));
             mission.setStatus(status);
 
             missionList.add(mission);
