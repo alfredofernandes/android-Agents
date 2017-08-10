@@ -71,9 +71,9 @@ public class MissionAgentDAO {
 
         while (c.moveToNext()) {
             MissionAgent missionAgent = new MissionAgent();
-            missionAgent.setId(c.getLong(c.getColumnIndex("id")));
-            missionAgent.setMissionId(c.getLong(c.getColumnIndex("mission_id")));
-            missionAgent.setAgentId(c.getLong(c.getColumnIndex("agend_id")));
+            missionAgent.setId(c.getLong(c.getColumnIndex(KEY_Id)));
+            missionAgent.setMissionId(c.getLong(c.getColumnIndex(KEY_MissionId)));
+            missionAgent.setAgentId(c.getLong(c.getColumnIndex(KEY_AgentId)));
 
             missionAgentList.add(missionAgent);
         }

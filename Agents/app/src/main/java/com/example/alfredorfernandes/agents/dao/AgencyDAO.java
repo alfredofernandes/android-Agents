@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.alfredorfernandes.agents.model.Agency;
+import com.example.alfredorfernandes.agents.model.Agent;
+import com.example.alfredorfernandes.agents.model.MissionAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +45,27 @@ public class AgencyDAO {
 
         db.delete(TABLE,null,null);
         DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public Agency dbFindAgency(String agencyID) {
+        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_Id+" = " + agencyID;
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        Agency agency = new Agency();
+
+        while (c.moveToNext()) {
+
+            agency.setId(c.getLong(c.getColumnIndex(KEY_Id)));
+            agency.setName(c.getString(c.getColumnIndex(KEY_Name)));
+            agency.setWebsite(c.getString(c.getColumnIndex(KEY_Website)));
+
+        }
+
+        c.close();
+        return agency;
+
     }
 
     public List<Agency> dbList() {

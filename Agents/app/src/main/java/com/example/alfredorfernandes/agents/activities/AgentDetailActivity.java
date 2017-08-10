@@ -1,5 +1,6 @@
 package com.example.alfredorfernandes.agents.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alfredorfernandes.agents.R;
+import com.example.alfredorfernandes.agents.dao.AgencyDAO;
+import com.example.alfredorfernandes.agents.model.Agency;
+import com.example.alfredorfernandes.agents.model.Agent;
 
 public class AgentDetailActivity extends AppCompatActivity {
 
@@ -20,6 +24,13 @@ public class AgentDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_agent_detail);
 
         setTitle("AGENT PROFILE");
+
+        Intent intent = getIntent();
+        Agent agent = (Agent) intent.getSerializableExtra("agent");
+
+        if (agent != null) {
+           loadData(agent);
+        }
 
         profileImage = (ImageView) findViewById(R.id.profile_image);
         profileName = (TextView) findViewById(R.id.profile_name);
@@ -37,5 +48,25 @@ public class AgentDetailActivity extends AppCompatActivity {
         buttonSms = (Button) findViewById(R.id.profile_btn_sms);
         buttonPhoto = (Button) findViewById(R.id.profile_btn_photo);
 
+    }
+
+    private void loadData(Agent agent) {
+
+        profileName.setText(agent.getName());
+        profileLevel.setText(agent.getLevel());
+        profileAddress.setText(agent.getAddress());
+        profilePhone.setText(agent.getPhone());
+        profileCountry.setText(agent.getCountry());
+
+        Agency agency = getAgency(agent.getAgencyId().toString());
+        profileAgency.setText(agency.getName());
+        profileAgencyWeb.setText(agency.getWebsite());
+
+    }
+
+    private Agency getAgency(String agencyId) {
+
+        AgencyDAO dao = new AgencyDAO();
+        return dao.dbFindAgency(agencyId);
     }
 }
