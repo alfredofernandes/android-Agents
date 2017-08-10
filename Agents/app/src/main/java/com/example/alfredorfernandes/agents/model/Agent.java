@@ -2,10 +2,11 @@ package com.example.alfredorfernandes.agents.model;
 
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.ArrayList;
 
-public class Agent
+public class Agent implements Serializable
 {
     private Long id;
     private String name;
