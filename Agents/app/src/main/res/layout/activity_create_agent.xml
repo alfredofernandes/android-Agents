@@ -7,16 +7,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:inputType="text"
-            android:maxLines="1"
-            android:text="Create Agent"
-            android:textAlignment="center"
-            android:textSize="20dp" />
-
         <EditText
             android:id="@+id/create_agent_name"
             android:layout_width="match_parent"

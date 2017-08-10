@@ -69,8 +69,8 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
         profileCountry.setText("Country: " + agent.getCountry());
 
         Agency agency = getAgency(agent.getAgencyId().toString());
-        profileAgency.setText(agency.getName());
-        profileAgencyWeb.setText(agency.getWebsite());
+        profileAgency.setText("Agency name: " +agency.getName());
+        profileAgencyWeb.setText("Agency website: " +agency.getWebsite());
 
     }
 

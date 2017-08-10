@@ -29,6 +29,9 @@ public class CreateAgentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_agent);
+
+        setTitle("CREATE AGENT");
+
         helper = new AgentHelper(this);
 
         Spinner level = (Spinner) findViewById(R.id.create_agent_level);

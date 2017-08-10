@@ -80,16 +80,17 @@
             android:layout_marginTop="10dp"/>
 
         <Button
+            android:layout_marginTop="30dp"
             android:id="@+id/profile_btn_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INFO"/>
+            android:text="MISSIONS"/>
 
         <Button
             android:id="@+id/profile_btn_sms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SMS"/>
+            android:text="SEND SMS"/>
 
         <Button
             android:id="@+id/profile_btn_call"
@@ -101,19 +102,19 @@
             android:id="@+id/profile_btn_map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MAP"/>
+            android:text="OPEN MAP"/>
 
         <Button
             android:id="@+id/profile_btn_web"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="WEB"/>
+            android:text="AGENCY WEBSITE"/>
 
         <Button
             android:id="@+id/profile_btn_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="IMG"/>
+            android:text="SEND IMAGES"/>
 
         <Button
             android:id="@+id/profile_btn_back"

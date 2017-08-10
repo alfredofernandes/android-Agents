@@ -3,24 +3,17 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title_agent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="Agents List"
-        android:textAlignment="center"
-        android:textSize="25dp" />
-
     <ListView
         android:id="@+id/agent_list"
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/agent_button_back"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="BACK" />
 
 </LinearLayout>

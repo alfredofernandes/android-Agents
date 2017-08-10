@@ -22,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setTitle("SYSTEM AGENTS");
+
         // Inserting sample data
         insertSampleData();
 

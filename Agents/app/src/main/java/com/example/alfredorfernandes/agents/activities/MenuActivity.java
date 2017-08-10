@@ -20,6 +20,8 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        setTitle("SYSTEM AGENTS");
+
         Button agentList = (Button) findViewById(R.id.agent_list_button);
         Button searchAgent = (Button) findViewById(R.id.search_agent_button);
         Button addAgent = (Button) findViewById(R.id.add_agent_button);

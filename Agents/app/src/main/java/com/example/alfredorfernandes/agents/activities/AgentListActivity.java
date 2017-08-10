@@ -26,6 +26,8 @@ public class AgentListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agent_list);
 
+        setTitle("AGENTS LIST");
+
         // Agent List
         agentsList = (ListView) findViewById(R.id.agent_list);
         registerForContextMenu(agentsList);
