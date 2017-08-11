@@ -3,12 +3,21 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
+    <!-- Editext for Search -->
+    <EditText android:id="@+id/agent_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search agents.."
+        android:inputType="textVisiblePassword"/>
+
+    <!-- List View -->
     <ListView
         android:id="@+id/agent_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <!-- Button -->
     <Button
         android:id="@+id/agent_button_back"
         android:layout_marginTop="10dp"

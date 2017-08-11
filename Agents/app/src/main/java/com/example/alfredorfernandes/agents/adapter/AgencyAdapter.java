@@ -43,7 +43,7 @@ public class AgencyAdapter extends ArrayAdapter<Agency> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        View rowview = flater.inflate(R.layout.listitens_agency,null,true);
+        View rowview = flater.inflate(R.layout.listitem_agency,null,true);
 
         TextView label = (TextView) rowview.findViewById(R.id.title);
         label.setText(values.get(position).getName());
@@ -54,7 +54,7 @@ public class AgencyAdapter extends ArrayAdapter<Agency> {
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
 
-        View rowview = flater.inflate(R.layout.listitens_agency,null,true);
+        View rowview = flater.inflate(R.layout.listitem_agency,null,true);
 
         TextView label = (TextView) rowview.findViewById(R.id.title);
         label.setText(values.get(position).getName());
