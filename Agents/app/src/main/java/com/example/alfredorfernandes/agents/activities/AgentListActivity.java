@@ -3,15 +3,19 @@ package com.example.alfredorfernandes.agents.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.alfredorfernandes.agents.R;
+import com.example.alfredorfernandes.agents.adapter.AgentAdapter;
 import com.example.alfredorfernandes.agents.dao.AgentDAO;
 import com.example.alfredorfernandes.agents.model.Agent;
 
@@ -20,6 +24,7 @@ import java.util.List;
 public class AgentListActivity extends AppCompatActivity {
 
     private ListView agentsList;
+    private AgentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,29 @@ public class AgentListActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Agent Search
+        EditText inputSearch = (EditText) findViewById(R.id.agent_search);
+        inputSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                adapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+                                          int arg3) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
 
     @Override
@@ -70,22 +98,7 @@ public class AgentListActivity extends AppCompatActivity {
 
             ListView agentList = (ListView) findViewById(R.id.agent_list);
 
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, agents) {
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
-                    Agent agent = agents.get(position);
-
-                    text1.setText(agent.getName());
-                    text2.setText(agent.getLevel().toString());
-
-                    return view;
-                }
-            };
+            adapter = new AgentAdapter(this, agents);
             agentList.setAdapter(adapter);
         }
     }
