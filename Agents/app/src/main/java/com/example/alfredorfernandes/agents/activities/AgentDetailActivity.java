@@ -112,6 +112,8 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
 
     private void loadData(Agent agent) {
 
+        profileImage.setImageBitmap(agent.getPhoto());
+
         profileName.setText("Name: " + agent.getName().toString());
         profileLevel.setText("Level: " + agent.getLevel());
         profileAddress.setText("Address: " + agent.getAddress());

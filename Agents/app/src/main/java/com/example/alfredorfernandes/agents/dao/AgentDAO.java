@@ -24,7 +24,7 @@ public class AgentDAO {
     public static final String KEY_Country = "country";
     public static final String KEY_Phone = "phone";
     public static final String KEY_Address = "address";
-    //public static final String KEY_Photo = "photo";
+    public static final String KEY_Photo = "photo";
     public static final String KEY_Username = "username";
     public static final String KEY_Password = "password";
     public static final String KEY_Level = "level";
@@ -36,7 +36,7 @@ public class AgentDAO {
                 + KEY_Country + " TEXT, "
                 + KEY_Phone + " TEXT, "
                 + KEY_Address + " TEXT, "
-                //+ KEY_Photo + " BLOB, "
+                + KEY_Photo + " BLOB, "
                 + KEY_Username + " TEXT, "
                 + KEY_Password + " TEXT, "
                 + KEY_Level + " TEXT)";
@@ -53,9 +53,9 @@ public class AgentDAO {
         values.put(KEY_Phone, agent.getPhone());
         values.put(KEY_Address, agent.getAddress());
 
-        /*if (agent.getPhoto() != null) {
+        if (agent.getPhoto() != null) {
             values.put(KEY_Photo, getBytes(agent.getPhoto()));
-        }*/
+        }
 
         values.put(KEY_Username, agent.getUsername());
         values.put(KEY_Password, agent.getPassword());
@@ -66,11 +66,20 @@ public class AgentDAO {
         DatabaseManager.getInstance().closeDatabase();
     }
 
-    public void dbDelete( ) {
+    public void dbDelete() {
 
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
         db.delete(TABLE,null,null);
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public void dbDeleteId(Agent agent) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String[] param = {agent.getId().toString()};
+        db.delete(TABLE, "id = ?", param);
         DatabaseManager.getInstance().closeDatabase();
     }
 
@@ -124,10 +133,10 @@ public class AgentDAO {
         agent.setAddress(c.getString(c.getColumnIndex(KEY_Address)));
         agent.setLevel(c.getString(c.getColumnIndex(KEY_Level)));
 
-        /*byte[] image = c.getBlob(c.getColumnIndex(KEY_Phone));
+        byte[] image = c.getBlob(c.getColumnIndex(KEY_Photo));
         if (image != null) {
             agent.setPhoto(getImage(image));
-        }*/
+        }
 
         agent.setUsername(c.getString(c.getColumnIndex(KEY_Username)));
         agent.setPassword(c.getString(c.getColumnIndex(KEY_Password)));

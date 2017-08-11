@@ -7,6 +7,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/create_agent_photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp" />
+
         <EditText
             android:id="@+id/create_agent_name"
             android:layout_width="match_parent"

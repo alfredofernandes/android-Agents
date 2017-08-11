@@ -1,6 +1,7 @@
 package com.example.alfredorfernandes.agents.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,8 @@ public class AgentAdapter extends BaseAdapter implements Filterable {
         //SET DATA TO THEM
         nameTxt.setText("Name: " + agents.get(pos).getName());
         levelTxt.setText("Level: "+ agents.get(pos).getLevel());
-        //img.setImageResource(agents.get(pos).getPhoto());
+        img.setImageBitmap(agents.get(pos).getPhoto());
+        Log.d("IMAGE", ""+ agents.get(pos).getPhoto());
 
         return convertView;
     }
