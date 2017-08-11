@@ -1,25 +1,31 @@
 <resources>
     <string name="app_name">Agents</string>
 
-    <!--LoginActivity-->
     <string name="login_field">Login</string>
     <string name="password_field">Password</string>
     <string name="login_button">Log In</string>
-
-    <!--MissionActivity-->
     <string name="mission_name">Name</string>
     <string name="mission_date">Date</string>
-    <string name="mission_status">Status</string>
-
-    <!--MenuActivity-->
     <string name="agent_list_button">List of Agents</string>
     <string name="agent_mission_button">List of Missions</string>
     <string name="search_agents_button">Search Agents</string>
     <string name="add_agent_button">Add Agent</string>
     <string name="add_mission_button">Add Mission</string>
     <string name="logout_button">Log Out</string>
+    <string name="open_missions">Open Missions</string>
+    <string name="back">Back</string>
+    <string name="hello">Hello, </string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="photo_description">Description</string>
+    <string name="level">Level</string>
+    <string name="search_agents">Search Agents</string>
 
-    <!--CreateAgentActivity-->
     <string-array name="spinner_agent_level">
         <item>Level</item>
         <item>001</item>
@@ -40,9 +46,9 @@
 
     <string-array name="spinner_mission_status">
         <item>Status</item>
-        <item>Done</item>
-        <item>Cancelled</item>
-        <item>On Going</item>
+        <item>ONGOING</item>
+        <item>DONE</item>
+        <item>CANCELLED</item>
     </string-array>
 
 </resources>

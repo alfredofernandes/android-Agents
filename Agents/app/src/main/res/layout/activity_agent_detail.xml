@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -19,90 +18,83 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp" />
 
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name: Naome Michel"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/profile_level"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Level: 001"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/profile_agency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Agency: ACC"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/profile_web_agency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Website: www.acc.com"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/profile_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Country: USA"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/profile_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Phone: (647) 9762345"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
             <TextView
                 android:id="@+id/profile_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Address: 62 Mayflower St. Sanford, FL, USA"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/profile_btn_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OPEN MISSIONS"/>
+                android:text="@string/open_missions" />
 
             <Button
                 android:id="@+id/profile_btn_back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BACK"/>
+                android:text="@string/back" />
 
         </LinearLayout>
     </LinearLayout>
