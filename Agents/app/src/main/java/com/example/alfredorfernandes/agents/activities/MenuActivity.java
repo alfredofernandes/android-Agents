@@ -30,8 +30,9 @@ public class MenuActivity extends AppCompatActivity {
         currentUser.setText("Hi, "+ nameAgent);
 
         Button agentList = (Button) findViewById(R.id.agent_list_button);
-        Button searchAgent = (Button) findViewById(R.id.search_agent_button);
+        Button missionList = (Button) findViewById(R.id.mission_list_button);
         Button addAgent = (Button) findViewById(R.id.add_agent_button);
+        Button addMission = (Button) findViewById(R.id.add_mission_button);
         Button logout = (Button) findViewById(R.id.logout_button);
 
         agentList.setOnClickListener(new View.OnClickListener() {
@@ -41,10 +42,17 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        searchAgent.setOnClickListener(new View.OnClickListener() {
+        missionList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MenuActivity.this, "Button 'Search Agents' Clicked!", Toast.LENGTH_SHORT).show();
+                openActivity(MissionListActivity.class);
+            }
+        });
+
+        addMission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity(CreateMissionActivity.class);
             }
         });
 
