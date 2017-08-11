@@ -19,7 +19,7 @@ import com.example.alfredorfernandes.agents.model.Agent;
 
 import java.util.List;
 
-public class CreateAgentActivity extends AppCompatActivity {
+public class    CreateAgentActivity extends AppCompatActivity {
 
     private AgentHelper helper;
     private ArrayAdapter<CharSequence> adapter;
