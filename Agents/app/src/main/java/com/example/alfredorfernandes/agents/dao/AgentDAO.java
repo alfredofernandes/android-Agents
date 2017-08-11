@@ -66,11 +66,20 @@ public class AgentDAO {
         DatabaseManager.getInstance().closeDatabase();
     }
 
-    public void dbDelete( ) {
+    public void dbDelete() {
 
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
         db.delete(TABLE,null,null);
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public void dbDeleteId(Agent agent) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String[] param = {agent.getId().toString()};
+        db.delete(TABLE, "id = ?", param);
         DatabaseManager.getInstance().closeDatabase();
     }
 
