@@ -52,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         addMission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity(CreateMissionActivity.class);
+                openActivity(MissionFormActivity.class);
             }
         });
 

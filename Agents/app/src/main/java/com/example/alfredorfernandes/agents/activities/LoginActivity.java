@@ -12,8 +12,14 @@ import android.widget.Toast;
 import com.example.alfredorfernandes.agents.R;
 import com.example.alfredorfernandes.agents.dao.AgencyDAO;
 import com.example.alfredorfernandes.agents.dao.AgentDAO;
+import com.example.alfredorfernandes.agents.dao.MissionAgentDAO;
+import com.example.alfredorfernandes.agents.dao.MissionDAO;
 import com.example.alfredorfernandes.agents.model.Agency;
 import com.example.alfredorfernandes.agents.model.Agent;
+import com.example.alfredorfernandes.agents.model.Mission;
+import com.example.alfredorfernandes.agents.model.MissionAgent;
+
+import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -66,13 +72,17 @@ public class LoginActivity extends AppCompatActivity {
 
         AgencyDAO agencyDAO = new AgencyDAO();
         AgentDAO agentDAO = new AgentDAO();
+        MissionDAO missionDAO = new MissionDAO();
+        MissionAgentDAO missionAgentDAO = new MissionAgentDAO();
 
         //Clear/Remove tables
         agencyDAO.dbDelete();
-       // agentDAO.dbDelete();
+        agentDAO.dbDelete();
+        missionDAO.dbDelete();
+        missionAgentDAO.dbDelete();
 
+        // Agency
         Agency agency = new Agency();
-
         agency.setName("BAGG");
         agency.setWebsite("http://www.bagg.com/");
         agencyDAO.dbInsert(agency);
@@ -85,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         agency.setWebsite("https://www.randstad.ca/");
         agencyDAO.dbInsert(agency);
 
+        // Agent
         Agent agent = new Agent();
         agent.setName("Juliana Lacerda");
         agent.setUsername("juliana");
@@ -95,7 +106,19 @@ public class LoginActivity extends AppCompatActivity {
         agent.setLevel("002");
         agent.setPhone("(647) 9388639");
         //agent.setPhoto(null);
-
         agentDAO.dbInsert(agent);
+
+        // Mission
+        Mission mission = new Mission();
+        mission.setName("Europe Heat Zone");
+        mission.setDate(new Date("01/05/2015"));
+        mission.setStatus(Mission.MissionStatus.DONE);
+        missionDAO.dbInsert(mission);
+
+        // Mission Agent
+        MissionAgent missionAgent = new MissionAgent();
+        missionAgent.setAgentId(agent.getId());
+        missionAgent.setMissionId(mission.getId());
+        missionAgentDAO.dbInsert(missionAgent);
     }
 }

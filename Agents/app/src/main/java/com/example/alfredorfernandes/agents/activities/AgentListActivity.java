@@ -48,7 +48,6 @@ public class AgentListActivity extends AppCompatActivity {
         // Agent List Back
         Button returnButton = (Button) findViewById(R.id.agent_button_back);
         returnButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 finish();
