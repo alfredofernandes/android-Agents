@@ -39,11 +39,20 @@ public class MissionAgentDAO {
         DatabaseManager.getInstance().closeDatabase();
     }
 
-    public void dbDelete( ) {
+    public void dbDelete() {
 
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
         db.delete(TABLE,null,null);
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
+    public void dbDeleteId(MissionAgent missionAgent) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+
+        String[] param = {missionAgent.getId().toString()};
+        db.delete(TABLE, "id = ?", param);
         DatabaseManager.getInstance().closeDatabase();
     }
 

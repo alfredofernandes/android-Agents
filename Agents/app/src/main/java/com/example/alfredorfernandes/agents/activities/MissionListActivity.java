@@ -3,6 +3,8 @@ package com.example.alfredorfernandes.agents.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alfredorfernandes.agents.R;
 import com.example.alfredorfernandes.agents.dao.MissionDAO;
@@ -67,27 +70,49 @@ public class MissionListActivity extends AppCompatActivity {
         MissionDAO missionDAO = new MissionDAO();
         final List<Mission> missions = missionDAO.dbList();
 
-        if (missions.size() > 0) {
+        ListView missionList = (ListView) findViewById(R.id.mission_list);
 
-            ListView missionList = (ListView) findViewById(R.id.mission_list);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, missions) {
 
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, android.R.id.text1, missions) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
-                    TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-                    TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+                Mission mission = missions.get(position);
 
-                    Mission mission = missions.get(position);
+                text1.setText(mission.getName()  + " (" + mission.getStatus().toString() + ")");
+                text2.setText(mission.getDate().toString());
 
-                    text1.setText(mission.getName()  + " (" + mission.getStatus().toString() + ")");
-                    text2.setText(mission.getDate().toString());
+                return view;
+            }
+        };
 
-                    return view;
-                }
-            };
-            missionList.setAdapter(adapter);
-        }
+        missionList.setAdapter(adapter);
+    }
+
+    public void onCreateContextMenu(final ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+
+        // Delete button
+        MenuItem delete = menu.add("Delete");
+        delete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                Mission mission = (Mission) missionsList.getItemAtPosition(info.position);
+
+                MissionDAO dao = new MissionDAO();
+                dao.dbDeleteId(mission);
+
+                Toast.makeText(MissionListActivity.this, "Delete mission " + mission.getName(), Toast.LENGTH_LONG).show();
+                loadDataList();
+
+                return false;
+            }
+        });
+
+        super.onCreateContextMenu(menu, v, menuInfo);
     }
 }
