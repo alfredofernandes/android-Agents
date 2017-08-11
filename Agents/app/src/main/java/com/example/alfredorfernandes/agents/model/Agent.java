@@ -3,8 +3,6 @@ package com.example.alfredorfernandes.agents.model;
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
-import java.sql.Blob;
-import java.util.ArrayList;
 
 public class Agent implements Serializable
 {
@@ -14,7 +12,7 @@ public class Agent implements Serializable
     private String country;
     private String phone;
     private String address;
-    //private Bitmap photo;
+    private Bitmap photo;
     private String username;
     private String password;
     private String level;
@@ -91,12 +89,12 @@ public class Agent implements Serializable
         this.address = address;
     }
 
-    /*public Bitmap getPhoto() {
+    public Bitmap getPhoto() {
         return photo;
     }
 
     public void setPhoto(Bitmap photo) {
         this.photo = photo;
-    }*/
+    }
 
 }
