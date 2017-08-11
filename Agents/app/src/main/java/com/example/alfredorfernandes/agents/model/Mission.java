@@ -4,14 +4,10 @@ import java.util.Date;
 
 public class Mission {
 
-    public enum MissionStatus {
-        DONE, CANCELLED, ONGOING
-    }
-
     private Long id;
     private String name;
     private Date date;
-    private MissionStatus status;
+    private String status;
 
     public Long getId() {
         return id;
@@ -37,11 +33,11 @@ public class Mission {
         this.date = date;
     }
 
-    public MissionStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(MissionStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

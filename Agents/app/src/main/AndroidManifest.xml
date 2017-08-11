@@ -26,6 +26,7 @@
         <activity android:name=".activities.AgentHistoryActivity" />
         <activity android:name=".activities.CreateAgentActivity" />
         <activity android:name=".activities.MissionListActivity" />
+        <activity android:name=".activities.MissionFormActivity"></activity>
     </application>
 
 </manifest>

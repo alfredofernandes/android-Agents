@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         Mission mission = new Mission();
         mission.setName("Europe Heat Zone");
         mission.setDate(new Date("01/05/2015"));
-        mission.setStatus(Mission.MissionStatus.DONE);
+        mission.setStatus("done");
         missionDAO.dbInsert(mission);
 
         // Mission Agent

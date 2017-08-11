@@ -58,13 +58,11 @@ public class MissionDAO {
         List<Mission> missionList = new ArrayList<Mission>();
 
         while (c.moveToNext()) {
-            Mission.MissionStatus status = Mission.MissionStatus.valueOf(c.getString(c.getColumnIndex(KEY_Status)));
-
             Mission mission = new Mission();
             mission.setId(c.getLong(c.getColumnIndex(KEY_Id)));
             mission.setName(c.getString(c.getColumnIndex(KEY_Name)));
             mission.setDate(loadDate(c, c.getColumnIndex(KEY_Date)));
-            mission.setStatus(status);
+            mission.setStatus(c.getString(c.getColumnIndex(KEY_Status)));
 
             missionList.add(mission);
         }

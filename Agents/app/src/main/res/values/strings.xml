@@ -6,6 +6,10 @@
     <string name="password_field">Password</string>
     <string name="login_button">Log In</string>
 
+    <!--MissionActivity-->
+    <string name="mission_name">Name</string>
+    <string name="mission_date">Date</string>
+
     <!--MenuActivity-->
     <string name="agent_list_button">List of Agents</string>
     <string name="agent_mission_button">List of Missions</string>
@@ -31,6 +35,13 @@
         <item>India</item>
         <item>China</item>
         <item>Canada</item>
+    </string-array>
+
+    <string-array name="spinner_mission_status">
+        <item>Status</item>
+        <item>ONGOING</item>
+        <item>DONE</item>
+        <item>CANCELLED</item>
     </string-array>
 
 </resources>

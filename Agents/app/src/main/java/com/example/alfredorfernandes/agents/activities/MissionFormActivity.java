@@ -1,8 +1,17 @@
 package com.example.alfredorfernandes.agents.activities;
 
-/**
- * Created by alfredorfernandes on 2017-08-11.
- */
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class MissionFormActivity {
+import com.example.alfredorfernandes.agents.R;
+
+public class MissionFormActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mission_form);
+
+        setTitle("MISSION DETAIL");
+    }
 }

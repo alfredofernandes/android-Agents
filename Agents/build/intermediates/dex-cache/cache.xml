@@ -7,13 +7,17 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-<<<<<<< HEAD
-        sha1="9b64274879959ddfded5b63f70eeb04359dc9504">
-        <dex dex="/Users/alfredorfernandes/Documents/Projects/Lambton/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_308f26aa08d9662fbb2c7901bd6bb92821e4aa28/classes.dex" />
-=======
-        sha1="8fe610111ebcd6e616229db5d1c80d91ca69e968">
+        sha1="b5232cdaa7f7d06a8bf4624f9dd189622f1c97c1">
         <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_cf69966a0a128d53a85f0366e25ff84b764cd96a/classes.dex" />
->>>>>>> be6a470b60b9fa5ab74b9d219910f12d2840e110
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/juliana/Documents/Juli/Lambton/Term1/MAD_Android_Fundaments/PROJECT/android-Agents/Agents/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a7bea4c3a94652065d69ae481dcd83eb431fdd39/classes.dex" />
     </item>
 
 </items>
