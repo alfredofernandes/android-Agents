@@ -5,17 +5,50 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/mission_name"
+        android:id="@+id/form_mission_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/mission_name"
         android:inputType="text"
         android:maxLines="1" />
 
-    <Button
-        android:id="@+id/login_button"
+    <EditText
+        android:id="@+id/form_mission_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:hint="@string/mission_date"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/form_mission_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/mission_status"
+        android:inputType="text"
+        android:maxLines="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/mission_button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/mission_button_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Save" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -4,21 +4,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/create_agent_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:contentDescription="@string/photo_description" />
 
         <EditText
             android:id="@+id/create_agent_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="text"
             android:maxLines="1" />
 
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:inputType="text"
                 android:maxLines="1" />
 
@@ -44,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:maxLines="1" />
 
@@ -55,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Address"
+            android:hint="@string/address"
             android:inputType="text"
             android:maxLines="1" />
 
@@ -64,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             android:inputType="phone"
             android:maxLines="1" />
 
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
 
             <Button
                 android:id="@+id/create_agent_save"
@@ -105,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:text="Save" />
+                android:text="@string/save" />
 
         </LinearLayout>
 

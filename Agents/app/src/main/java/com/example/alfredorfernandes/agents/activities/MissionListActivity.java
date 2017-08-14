@@ -82,7 +82,7 @@ public class MissionListActivity extends AppCompatActivity {
 
                 Mission mission = missions.get(position);
 
-                text1.setText(mission.getName()  + " (" + mission.getStatus().toString() + ")");
+                text1.setText(mission.getName().toString());
                 text2.setText(mission.getDate().toString());
 
                 return view;
