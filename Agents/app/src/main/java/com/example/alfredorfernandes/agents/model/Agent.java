@@ -1,6 +1,8 @@
 package com.example.alfredorfernandes.agents.model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 
 import java.io.Serializable;
 
@@ -12,10 +14,18 @@ public class Agent implements Serializable
     private String country;
     private String phone;
     private String address;
-    private Bitmap photo;
+    private String photoPath;
     private String username;
     private String password;
     private String level;
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
 
     public Long getAgencyId() {
         return agencyId;
@@ -89,12 +99,13 @@ public class Agent implements Serializable
         this.address = address;
     }
 
-    public Bitmap getPhoto() {
-        return photo;
-    }
+    public Bitmap getImagePhoto() {
 
-    public void setPhoto(Bitmap photo) {
-        this.photo = photo;
+        Bitmap bitmap = BitmapFactory.decodeFile(photoPath);
+        Bitmap lowdefbitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+
+        return lowdefbitmap;
+
     }
 
 }

@@ -3,6 +3,9 @@ package com.example.alfredorfernandes.agents.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -112,7 +115,12 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
 
     private void loadData(Agent agent) {
 
-        profileImage.setImageBitmap(agent.getPhoto());
+        if (agent.getPhotoPath() != null) {
+            profileImage.setImageBitmap(agent.getImagePhoto());
+            profileImage.setScaleType((ImageView.ScaleType.FIT_XY));
+        } else {
+            profileImage.setImageResource(R.drawable.ic_add_photo);
+        }
 
         profileName.setText("Name: " + agent.getName().toString());
         profileLevel.setText("Level: " + agent.getLevel());

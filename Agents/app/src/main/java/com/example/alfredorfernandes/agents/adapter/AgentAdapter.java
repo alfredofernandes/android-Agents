@@ -1,6 +1,7 @@
 package com.example.alfredorfernandes.agents.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,8 +61,13 @@ public class AgentAdapter extends BaseAdapter implements Filterable {
         //SET DATA TO THEM
         nameTxt.setText("Name: " + agents.get(pos).getName());
         levelTxt.setText("Level: "+ agents.get(pos).getLevel());
-        img.setImageBitmap(agents.get(pos).getPhoto());
-        Log.d("IMAGE", ""+ agents.get(pos).getPhoto());
+
+        if (agents.get(pos).getPhotoPath() != null) {
+            img.setImageBitmap(agents.get(pos).getImagePhoto());
+            img.setScaleType((ImageView.ScaleType.FIT_XY));
+        } else {
+            img.setImageResource(R.drawable.ic_account);
+        }
 
         return convertView;
     }

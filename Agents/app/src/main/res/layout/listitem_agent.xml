@@ -9,6 +9,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
+        android:src="@drawable/ic_account"
         android:contentDescription="@string/photo_description" />
 
     <LinearLayout

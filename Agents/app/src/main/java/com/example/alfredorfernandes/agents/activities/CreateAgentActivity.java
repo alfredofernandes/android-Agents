@@ -1,20 +1,14 @@
 package com.example.alfredorfernandes.agents.activities;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,11 +21,7 @@ import com.example.alfredorfernandes.agents.helper.AgentHelper;
 import com.example.alfredorfernandes.agents.model.Agency;
 import com.example.alfredorfernandes.agents.model.Agent;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 public class CreateAgentActivity extends AppCompatActivity {
@@ -39,8 +29,9 @@ public class CreateAgentActivity extends AppCompatActivity {
     private AgentHelper helper;
     private ArrayAdapter<CharSequence> adapter;
     private AgencyAdapter adapterAgency;
-    private Bitmap bitmapPhoto;
+
     private ImageButton photo;
+    private String dirAppPhoto;
 
     private static final int CAMERA_REQUEST = 1888;
 
@@ -64,8 +55,14 @@ public class CreateAgentActivity extends AppCompatActivity {
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+                Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                dirAppPhoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+                File filePhoto = new File(dirAppPhoto);
+
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePhoto));
+                startActivityForResult(intentCamera, CAMERA_REQUEST);
             }
         });
 
@@ -97,9 +94,9 @@ public class CreateAgentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Agent agent = helper.helperAgent();
-                agent.setPhoto(bitmapPhoto);
                 AgentDAO dao = new AgentDAO();
                 dao.dbInsert(agent);
+
                 Toast.makeText(CreateAgentActivity.this, "Agent " + agent.getName() + " was saved!", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -109,8 +106,11 @@ public class CreateAgentActivity extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-            bitmapPhoto = (Bitmap) data.getExtras().get("data");
-            photo.setImageBitmap(bitmapPhoto);
+            if (resultCode == Activity.RESULT_OK) {
+                if (requestCode == CAMERA_REQUEST) {
+                    helper.loadImage(dirAppPhoto);
+                }
+            }
         }
     }
 
