@@ -1,6 +1,8 @@
 package com.example.alfredorfernandes.agents.activities;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,8 +12,10 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,12 +24,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alfredorfernandes.agents.BuildConfig;
 import com.example.alfredorfernandes.agents.R;
 import com.example.alfredorfernandes.agents.dao.AgencyDAO;
 import com.example.alfredorfernandes.agents.model.Agency;
 import com.example.alfredorfernandes.agents.model.Agent;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class AgentDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,6 +43,7 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
 
     private static final int CAMERA_CODE = 990;
     private String dirAppPhoto;
+    private ArrayList<String> photos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +85,7 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
         switch (item.getItemId()) {
 
             case R.id.menu_photo:
-                Toast.makeText(this, "Photo button was clicked.", Toast.LENGTH_SHORT).show();
+                openCamera();
                 return true;
 
             case R.id.menu_sms:
@@ -152,10 +159,53 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
 
         dirAppPhoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
         File filePhoto = new File(dirAppPhoto);
-        intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePhoto));
+
+        if (android.os.Build.VERSION.SDK_INT >= 24){
+            Uri photoURI = FileProvider.getUriForFile(AgentDetailActivity.this,
+                    BuildConfig.APPLICATION_ID + ".provider",
+                    filePhoto);
+            intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+        } else{
+            intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePhoto));
+        }
 
         startActivityForResult(intentCamera, CAMERA_CODE);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_CODE) {
+                photos.add(dirAppPhoto);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Would you like to take more photos?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                openCamera();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+
+                                Intent goAlbumList = new Intent(AgentDetailActivity.this, AgentAlbumActivity.class);
+                                goAlbumList.putExtra("photos", photos);
+                                goAlbumList.putExtra("phone", currentAgent.getPhone());
+                                startActivity(goAlbumList);
+
+                                Log.e("PHOTOS", ""+photos.size());
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }
     }
 
     @Override
