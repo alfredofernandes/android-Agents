@@ -26,7 +26,7 @@ public class MissionDAO {
                 + KEY_Date + " LONG, "
                 + KEY_Status + " TEXT)";
 
-    public void dbInsert(Mission mission) {
+    public long dbInsert(Mission mission) {
 
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
 
@@ -36,8 +36,10 @@ public class MissionDAO {
         values.put(KEY_Status, mission.getStatus().toString());
 
         // Inserting Row
-        db.insert(TABLE, null, values);
+        long idMission = db.insert(TABLE, null, values);
         DatabaseManager.getInstance().closeDatabase();
+
+        return idMission;
     }
 
     public void dbDelete() {
@@ -78,6 +80,26 @@ public class MissionDAO {
 
         c.close();
         return missionList;
+    }
+
+    public Mission dbSearchById(String missionID) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_Id+" = " + missionID;
+
+        Cursor c = db.rawQuery(sql, null);
+        Mission mission = new Mission();
+
+        while (c.moveToNext()) {
+            mission.setId(c.getLong(c.getColumnIndex(KEY_Id)));
+            mission.setName(c.getString(c.getColumnIndex(KEY_Name)));
+            mission.setDate(loadDate(c, c.getColumnIndex(KEY_Date)));
+            mission.setStatus(c.getString(c.getColumnIndex(KEY_Status)));
+        }
+
+        c.close();
+        return mission;
+
     }
 
     public static Long persistDate(Date date) {

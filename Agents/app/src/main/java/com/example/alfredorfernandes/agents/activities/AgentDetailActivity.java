@@ -7,7 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,6 +25,8 @@ import com.example.alfredorfernandes.agents.dao.AgencyDAO;
 import com.example.alfredorfernandes.agents.model.Agency;
 import com.example.alfredorfernandes.agents.model.Agent;
 
+import java.io.File;
+
 public class AgentDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView profileImage;
@@ -30,6 +34,9 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
     private Button buttonInfo, buttonBack;
     private Agent currentAgent;
     private Agency currentAgency;
+
+    private static final int CAMERA_CODE = 990;
+    private String dirAppPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,12 +146,28 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
         return dao.dbFindAgency(agencyId);
     }
 
+    private void openCamera() {
+
+        Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        dirAppPhoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+        File filePhoto = new File(dirAppPhoto);
+        intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePhoto));
+
+        startActivityForResult(intentCamera, CAMERA_CODE);
+
+    }
+
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.profile_btn_info:
-                Toast.makeText(this, "MISSION button was clicked.", Toast.LENGTH_SHORT).show();
+
+                Intent goMissionList = new Intent(AgentDetailActivity.this, AgentHistoryActivity.class);
+                goMissionList.putExtra("agent", currentAgent.getId().toString());
+                startActivity(goMissionList);
+
                 break;
 
             case R.id.profile_btn_back:

@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.alfredorfernandes.agents.model.Agent;
-import com.example.alfredorfernandes.agents.model.Mission;
 import com.example.alfredorfernandes.agents.model.MissionAgent;
 
 import java.util.ArrayList;
@@ -61,13 +59,13 @@ public class MissionAgentDAO {
         return dbSQLStatement(sql);
     }
 
-    public List<MissionAgent> dbFindPerAgent(Agent agent) {
-        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_AgentId+" = " + agent.getId();
+    public List<MissionAgent> dbFindPerAgent(String agentID) {
+        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_AgentId+" = " + agentID;
         return dbSQLStatement(sql);
     }
 
-    public List<MissionAgent> dbFindPerMission(Mission mission) {
-        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_MissionId+" = " + mission.getId();
+    public List<MissionAgent> dbFindPerMission(String missionID) {
+        String sql = "SELECT * FROM "+ TABLE +" WHERE "+KEY_MissionId+" = " + missionID;
         return dbSQLStatement(sql);
     }
 

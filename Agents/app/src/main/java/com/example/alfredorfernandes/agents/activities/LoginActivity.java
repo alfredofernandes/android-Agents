@@ -72,14 +72,10 @@ public class LoginActivity extends AppCompatActivity {
 
         AgencyDAO agencyDAO = new AgencyDAO();
         AgentDAO agentDAO = new AgentDAO();
-        MissionDAO missionDAO = new MissionDAO();
-        MissionAgentDAO missionAgentDAO = new MissionAgentDAO();
 
         //Clear/Remove tables
         agencyDAO.dbDelete();
         agentDAO.dbDelete();
-        missionDAO.dbDelete();
-        missionAgentDAO.dbDelete();
 
         // Agency
         Agency agency = new Agency();
@@ -108,17 +104,5 @@ public class LoginActivity extends AppCompatActivity {
         //agent.setPhoto(null);
         agentDAO.dbInsert(agent);
 
-        // Mission
-        Mission mission = new Mission();
-        mission.setName("Europe Heat Zone");
-        mission.setDate(new Date("01/05/2015"));
-        mission.setStatus("done");
-        missionDAO.dbInsert(mission);
-
-        // Mission Agent
-        MissionAgent missionAgent = new MissionAgent();
-        missionAgent.setAgentId(agent.getId());
-        missionAgent.setMissionId(mission.getId());
-        missionAgentDAO.dbInsert(missionAgent);
     }
 }

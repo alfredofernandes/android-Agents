@@ -30,7 +30,6 @@ public class MenuActivity extends AppCompatActivity {
         currentUser.setText("Hi, "+ nameAgent);
 
         Button agentList = (Button) findViewById(R.id.agent_list_button);
-        Button missionList = (Button) findViewById(R.id.mission_list_button);
         Button addAgent = (Button) findViewById(R.id.add_agent_button);
         Button addMission = (Button) findViewById(R.id.add_mission_button);
         Button logout = (Button) findViewById(R.id.logout_button);
@@ -39,13 +38,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openActivity(AgentListActivity.class);
-            }
-        });
-
-        missionList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity(MissionListActivity.class);
             }
         });
 

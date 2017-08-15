@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/mission_name"
+        android:layout_margin="10dp"
         android:inputType="text"
         android:maxLines="1" />
 
@@ -17,16 +18,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/mission_date"
+        android:layout_margin="10dp"
         android:inputType="text"
         android:maxLines="1" />
 
-    <EditText
+    <Spinner
         android:id="@+id/form_mission_status"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/mission_status"
-        android:inputType="text"
-        android:maxLines="1" />
+        android:layout_margin="10dp" />
+
+    <ListView
+        android:id="@+id/form_mission_agents"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"

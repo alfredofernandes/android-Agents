@@ -25,23 +25,34 @@
             android:hint="@string/agent_list_button" />
 
         <Button
+            android:id="@+id/add_agent_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_agent_button" />
+
+        <View android:background="#CCCCCC"
+            android:layout_width = "match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!--<Button
             android:id="@+id/mission_list_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/agent_mission_button" />
+            android:hint="@string/agent_mission_button" />-->
 
         <Button
             android:id="@+id/add_mission_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/add_mission_button" />
+            android:hint="@string/add_mission_button"/>
 
-        <Button
-            android:id="@+id/add_agent_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:hint="@string/add_agent_button" />
+        <View android:background="#CCCCCC"
+            android:layout_width = "match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
         <Button
             android:id="@+id/logout_button"

@@ -1,5 +1,6 @@
 package com.example.alfredorfernandes.agents.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Mission {
@@ -27,6 +28,11 @@ public class Mission {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getDateString() {
+        SimpleDateFormat simpleDate =  new SimpleDateFormat("dd/MM/yyyy");
+        return simpleDate.format(date);
     }
 
     public void setDate(Date date) {

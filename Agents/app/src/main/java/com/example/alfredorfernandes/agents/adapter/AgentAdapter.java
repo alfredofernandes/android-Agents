@@ -31,21 +31,25 @@ public class AgentAdapter extends BaseAdapter implements Filterable {
         this.agents = agents;
         this.filterList = agents;
     }
+
     @Override
     public int getCount() {
 
         return agents.size();
     }
+
     @Override
     public Object getItem(int pos) {
 
         return agents.get(pos);
     }
+
     @Override
     public long getItemId(int pos) {
 
         return agents.indexOf(getItem(pos));
     }
+
     @Override
     public View getView(int pos, View convertView, ViewGroup parent) {
 
@@ -71,6 +75,7 @@ public class AgentAdapter extends BaseAdapter implements Filterable {
 
         return convertView;
     }
+
     @Override
     public Filter getFilter() {
 
