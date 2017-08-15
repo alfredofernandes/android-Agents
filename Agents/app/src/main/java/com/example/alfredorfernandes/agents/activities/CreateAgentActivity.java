@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.alfredorfernandes.agents.BuildConfig;
 import com.example.alfredorfernandes.agents.R;
 import com.example.alfredorfernandes.agents.adapter.AgencyAdapter;
 import com.example.alfredorfernandes.agents.dao.AgencyDAO;
@@ -61,7 +63,16 @@ public class CreateAgentActivity extends AppCompatActivity {
                 dirAppPhoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
                 File filePhoto = new File(dirAppPhoto);
 
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePhoto));
+                if (android.os.Build.VERSION.SDK_INT >= 24){
+                    Uri photoURI = FileProvider.getUriForFile(CreateAgentActivity.this,
+                            BuildConfig.APPLICATION_ID + ".provider",
+                            filePhoto);
+                    intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+                } else{
+                    intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePhoto));
+                }
+
                 startActivityForResult(intentCamera, CAMERA_REQUEST);
             }
         });

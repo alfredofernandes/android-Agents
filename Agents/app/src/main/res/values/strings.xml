@@ -5,7 +5,7 @@
     <string name="password_field">Password</string>
     <string name="login_button">Log In</string>
     <string name="mission_name">Name</string>
-    <string name="mission_date">Date</string>
+    <string name="mission_date">dd/mm/yyyy</string>
     <string name="mission_status">Status</string>
     <string name="agent_list_button">List of Agents</string>
     <string name="agent_mission_button">List of Missions</string>

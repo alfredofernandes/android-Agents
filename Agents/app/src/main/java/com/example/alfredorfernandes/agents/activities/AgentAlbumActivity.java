@@ -114,11 +114,8 @@ public class AgentAlbumActivity extends AppCompatActivity {
                 intentSMS.setType("image/*");
 
                 startActivity(Intent.createChooser(intentSMS, "Send..."));
-
             }
-
         }
-
     }
 
     public class ImageAdapter extends BaseAdapter {

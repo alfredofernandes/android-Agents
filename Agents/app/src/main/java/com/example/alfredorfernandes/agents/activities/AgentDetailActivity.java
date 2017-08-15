@@ -85,6 +85,7 @@ public class AgentDetailActivity extends AppCompatActivity implements View.OnCli
         switch (item.getItemId()) {
 
             case R.id.menu_photo:
+
                 openCamera();
                 return true;
 
