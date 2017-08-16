@@ -136,4 +136,15 @@ public class AgentDAO {
         return agent;
 
     }
+
+    public boolean isAgent(String phone) {
+
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String sql = "SELECT * FROM " + TABLE + " WHERE " + KEY_Phone + "=?";
+        Cursor c = db.rawQuery(sql, new String[]{phone});
+        int result = c.getCount();
+
+        return result > 0;
+
+    }
 }
