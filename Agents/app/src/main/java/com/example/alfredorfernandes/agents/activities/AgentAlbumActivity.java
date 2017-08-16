@@ -175,9 +175,10 @@ public class AgentAlbumActivity extends AppCompatActivity {
             String path = photos.get(position);
 
             Bitmap bitmap = BitmapFactory.decodeFile(path);
-            Bitmap lowdefbitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+            Bitmap lowdefbitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
 
             holder.imageview.setImageBitmap(lowdefbitmap);
+            holder.imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
             holder.checkbox.setChecked(photosselection[position]);
             holder.id = position;
 

@@ -68,7 +68,7 @@ public class AgentAdapter extends BaseAdapter implements Filterable {
 
         if (agents.get(pos).getPhotoPath() != null) {
             img.setImageBitmap(agents.get(pos).getImagePhoto());
-            img.setScaleType((ImageView.ScaleType.FIT_XY));
+            img.setScaleType((ImageView.ScaleType.CENTER_CROP));
         } else {
             img.setImageResource(R.drawable.ic_account);
         }
